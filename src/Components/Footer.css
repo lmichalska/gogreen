@@ -1,13 +1,29 @@
 /* Footer.css */
 
 :root {
-    --asparagus: #698F40;
-    --cosmiclatte: #F8F4E3;
-  }
-  
+  --bg-color: #F0F4FA;
+  --card-color: #E7EEF8;
+  --light-color: #D9E4F2;
+  --text-color: #1E1E2C;
+  --primary-color: #3A88E9;
+  --primary-color-hover: #316EC8;
+  --secondary-color: #f3a200;
+  --secondary-color-hover: #d98200;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a191b;
+  --card-color: #2f2e30;
+  --light-color: #454446;
+  --text-color: #F9F9F9;
+  --primary-color: #15875f;
+  --primary-color-hover: #5fb38d;
+  --secondary-color: #15626a;
+  --secondary-color-hover: #3a8390;
+}
   .footer {
-    background-color: var(--asparagus);
-    color: var(--cosmiclatte);
+    background-color: var(--primary-color);
+    color: var(--text-color);
     padding: 2rem 0;
     text-align: center;
     position: relative;
@@ -41,7 +57,7 @@
   .social-icons a {
     display: inline-block;
     margin: 0 0.5rem;
-    color: var(--cosmiclatte);
+    color: var(--text-color);
     font-size: 1rem;
     text-decoration: none;
   }
@@ -49,30 +65,4 @@
   .social-icons a:hover {
     text-decoration: underline;
   }
-  
-  .footer-bottom {
-    border-top: 1px solid #556B2F;
-    padding-top: 1rem;
-    font-size: 0.85rem;
-  }
-  
-  /* Go to Top button */
-  .go-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background-color: var(--cosmiclatte);
-    color: var(--asparagus);
-    border: none;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-  }
-  
-  .go-to-top:hover {
-    background-color: #e0dbc9;
-  }
-  
+ 

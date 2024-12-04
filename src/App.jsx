@@ -10,7 +10,6 @@ function App() {
   return (
     <main>
       <NavBar />
-      <ScrollToTop />
       <Routes>
       <Route path="/" element={<HomePage/>}/>
       <Route path="/contact" element={<Contact/>}/>

@@ -15,10 +15,16 @@ const NavLinks = ({ closeMenu }) => {
                     <Link to="/" onClick={closeMenu}>Home</Link>
                 </li>
                 <li>
-                    <Link to="/acc" onClick={closeMenu}>My Account</Link>
+                    <Link to="/vol-list" onClick={closeMenu}>Volunteer</Link>
+                </li>
+                <li>
+                    <Link to="/faq" onClick={closeMenu}>FAQ</Link>
                 </li>
                 <li>
                     <Link to="/contact" onClick={closeMenu}>Contact</Link>
+                </li>
+                <li>
+                    <Link to="/acc" onClick={closeMenu}>My Account</Link>
                 </li>
             </ul>
         </nav>

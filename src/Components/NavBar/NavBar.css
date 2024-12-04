@@ -1,13 +1,29 @@
 :root {
-    --asparagus: #698F40;
-    --cosmiclatte: #F8F4E3;
-    --bg: #F9F9F9;
+    --bg-color: #F0F4FA;
+    --card-color: #E7EEF8;
+    --light-color: #D9E4F2;
+    --text-color: #1E1E2C;
+    --primary-color: #3A88E9;
+    --primary-color-hover: #316EC8;
+    --secondary-color: #f3a200;
+    --secondary-color-hover: #d98200;
+  }
+  
+  [data-theme="dark"] {
+    --bg-color: #1a191b;
+    --card-color: #2f2e30;
+    --light-color: #454446;
+    --text-color: #F9F9F9;
+    --primary-color: #15875f;
+    --primary-color-hover: #5fb38d;
+    --secondary-color: #15626a;
+    --secondary-color-hover: #3a8390;
   }
 
 nav {
     display: flex;
     justify-content: center;
-    background: var(--asparagus);
+    background: var(--primary-color);
     padding-left: 2vw;
     position: fixed;
     top: 0; 
@@ -26,11 +42,7 @@ a{
 }
 
 .logo {
-    color: black;
-}
-
-.color {
-    color: var(--cosmiclatte);
+    color: var(--text-color);
 }
 
 nav ul {
@@ -53,26 +65,13 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     font-weight: bold;
-    color: black;
+    color: var(--text-color);
 }
 
 nav ul li a:hover {
-    color: white;
+    color: var(--secondary-color);
     transition: .3s;
 }
-
-.promo-nav {
-    background-color: var(--cosmiclatte);
-    color: var(--cosmiclatte);
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 12px;
-    font-size: 1rem;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-    margin: 0;
-  }
   
 .MobileNavigation {
     display: none;
@@ -102,7 +101,7 @@ nav ul li a:hover {
         align-items: center;
         justify-content: space-between;
         height: auto;
-        background-color: var(--asparagus);
+        background-color: var(--primary-color);
         width: 100vw;
         filter: drop-shadow(0px 5px 10px rgba(0,0,0,0.3));
     }
@@ -116,7 +115,7 @@ nav ul li a:hover {
         top: 70px;
         height: 93vh;
         width: 100%;
-        background: var(--asparagus);
+        background: var(--primary-color);
         margin: 0;
         padding: 0;
         padding-top: 10vh;
