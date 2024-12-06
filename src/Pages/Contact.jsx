@@ -1,8 +1,6 @@
-// Bianka & Filip
-
-
 import React, { useState } from 'react';
-import "..//Pages/Pages.css";
+import "./Pages.css";
+
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -22,7 +20,6 @@ const Contact = () => {
 
     // CONTACT PAGE
     return (
-        <div className="landing-page">
             <div className="contact-page">
                 <h1 className='headline-all'>Contact Us</h1>
                 <p className='contact'>
@@ -32,9 +29,10 @@ const Contact = () => {
                     <br></br><br></br>Thank you for being part of our community! 🌱
                 </p>
                 {/* Message form*/}
-                <form onSubmit={handleSubmit} className="contact-form">
+                <section className="form-section">
+                <form onSubmit={handleSubmit} className="form-contact">
                     <label>
-                        Name:
+                        Name:                    </label>
                         <input 
                             type="text" 
                             name="name" 
@@ -43,9 +41,8 @@ const Contact = () => {
                             placeholder="Your Name" 
                             required
                         />
-                    </label>
                     <label>
-                        Email:
+                        Email:                    </label>
                         <input 
                             type="email" 
                             name="email" 
@@ -54,9 +51,18 @@ const Contact = () => {
                             placeholder="youremail@example.com" 
                             required 
                         />
-                    </label>
                     <label>
-                        Message:
+                        Title                    </label>
+                        <input 
+                            type="text" 
+                            name="title" 
+                            value={formData.title} 
+                            onChange={handleChange} 
+                            placeholder="Title" 
+                            required
+                        />
+                    <label>
+                        Message:                    </label>
                         <textarea 
                             name="message" 
                             value={formData.message} 
@@ -65,11 +71,10 @@ const Contact = () => {
                             rows="4" 
                             required 
                         />
-                    </label>
                     <button type="submit">Send Message</button>
                 </form>
+                </section>
             </div>
-        </div>
     );
 };
 

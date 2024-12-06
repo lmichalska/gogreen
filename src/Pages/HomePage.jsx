@@ -1,34 +1,36 @@
 import "./Pages.css";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
-  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "light");
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  // Navigate to contact page
+  const handleExploreNavigate = () => {
+    navigate('/contact');
+  };
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  // Navigate to specific volunteer opportunity details
+  const handleLearnMore = (path) => {
+    navigate(path);
   };
 
   return (
     <main>
       {/* Banner Section */}
-            {/* Theme Toggle Button */}
-            <button onClick={toggleTheme} className="theme-toggle">
-        Switch to {theme === "light" ? "Dark" : "Light"} Mode
-      </button>
       <section className="hero" aria-labelledby="hero-heading">
         <div className="hero-content">
           <h1 id="hero-heading">Volunteer in Aarhus</h1>
           <p>
             Discover opportunities to give back, make a difference, and connect with your community.
           </p>
-          <a href="#opportunities" className="btn-primary">
+          <button 
+            onClick={handleExploreNavigate} 
+            className="btn-primary" 
+            aria-label="click to see volunteer work in Aarhus"
+          >
             Explore Opportunities
-          </a>
+          </button>
         </div>
       </section>
 
@@ -51,27 +53,27 @@ const HomePage = () => {
             <p>
               Help maintain Aarhus' urban green spaces and grow fresh produce for the community.
             </p>
-            <a href="/details/garden" className="btn-secondary">
+            <button onClick={() => handleLearnMore('/details/garden')} className="btn-secondary">
               Learn More
-            </a>
+            </button>
           </li>
           <li>
             <h3>Language Tutoring</h3>
             <p>
               Support newcomers to Aarhus by helping them learn Danish or English.
             </p>
-            <a href="/details/tutoring" className="btn-secondary">
+            <button onClick={() => handleLearnMore('/details/tutoring')} className="btn-secondary">
               Learn More
-            </a>
+            </button>
           </li>
           <li>
             <h3>Event Volunteering</h3>
             <p>
               Be part of exciting community events and festivals in Aarhus.
             </p>
-            <a href="/details/events" className="btn-secondary">
+            <button onClick={() => handleLearnMore('/details/events')} className="btn-secondary">
               Learn More
-            </a>
+            </button>
           </li>
         </ul>
       </section>
@@ -80,9 +82,9 @@ const HomePage = () => {
       <section id="contact" className="contact">
         <h2>Get in Touch</h2>
         <p>Have questions? We're here to help!</p>
-        <a href="/contact" className="btn-primary">
+        <button onClick={() => handleExploreNavigate()} className="btn-primary">
           Contact Us
-        </a>
+        </button>
       </section>
     </main>
   );
