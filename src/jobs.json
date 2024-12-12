@@ -1,79 +1,79 @@
 [
-    {
-        "organization": "Visit Aarhus ReThinkers",
-        "description": "Volunteer at cultural events to promote Aarhus as a destination and create memorable experiences for tourists.",
-        "activities": [
-            "Welcoming guests at cruise ship arrivals",
-            "Assisting at the Food Festival",
-            "Supporting Aarhus Festuge and other city events"
-        ],
-        "contact": "rethinkers@visitaarhus.com",
-        "website": "https://www.visitaarhus.com"
-    },
-    {
-        "organization": "Volunteer Center Aarhus (Frivilligcenter Aarhus)",
-        "description": "Connects volunteers with a network of NGOs and social projects in Aarhus.",
-        "activities": [
-            "Social assistance projects",
-            "Cultural exchange programs",
-            "Community development"
-        ],
-        "contact": "info@frivilligcenteraarhus.dk",
-        "website": "https://www.frivilligcenteraarhus.dk"
-    },
-    {
-        "organization": "Kulturkammerater / Culture Buddies",
-        "description": "Pairs international newcomers with locals to explore cultural sites in Aarhus.",
-        "activities": [
-            "Visiting museums like ARoS",
-            "Participating in leisure activities",
-            "Intercultural friendship programs"
-        ],
-        "contact": "via Facebook at Kulturkammerater",
-        "website": "https://www.facebook.com/kulturkammerater"
-    },
-    {
-        "organization": "Cafe Mellemfolk",
-        "description": "Volunteer at a cafe that promotes sustainability, equality, and community engagement.",
-        "activities": [
-            "Barista and kitchen duties",
-            "Hosting community events",
-            "Supporting sustainability initiatives"
-        ],
-        "contact": "mellemfolk@actionaid.dk",
-        "website": "https://www.mellemfolk.dk"
-    },
-    {
-        "organization": "Grocery Assistance for the Elderly",
-        "description": "Help elderly citizens by buying and delivering groceries to their homes.",
-        "activities": [
-            "Shopping for groceries",
-            "Delivering items to elderly individuals",
-            "Providing friendly social interaction"
-        ],
-        "contact": "info@elderlycare-aarhus.dk",
-        "website": "https://www.elderlycare-aarhus.dk"
-    },
-    {
-        "organization": "Aarhus Shelters",
-        "description": "Support individuals facing homelessness by volunteering at local shelters.",
-        "activities": [
-            "Preparing meals",
-            "Providing companionship",
-            "Organizing shelter resources"
-        ],
-        "contact": "volunteer@aarhusshelters.dk",
-        "website": "https://www.aarhusshelters.dk"
-    },
-    {
-        "organization": "Beach Clean-Up Aarhus",
-        "description": "Participate in cleaning beaches around Aarhus to protect marine life and improve the environment.",
-        "activities": [
-            "Collecting litter on beaches",
-            "Sorting and recycling waste",
-            "Raising awareness about environmental protection"
-        ],
-        "contact": "cleanup@aarhusbeaches.dk",
-        "website": "https://www.aarhusbeaches.dk"
-    }
+  {
+    "organization": "Visit Aarhus ReThinkers",
+    "description": "Volunteer at cultural events to promote Aarhus as a destination and create memorable experiences for tourists.",
+    "activities": [
+      "Welcoming guests at cruise ship arrivals",
+      "Assisting at the Food Festival",
+      "Supporting Aarhus Festuge and other city events"
+    ],
+    "contact": "rethinkers@visitaarhus.com",
+    "website": "https://www.visitaarhus.com"
+  },
+  {
+    "organization": "Volunteer Center Aarhus (Frivilligcenter Aarhus)",
+    "description": "Connects volunteers with a network of NGOs and social projects in Aarhus.",
+    "activities": [
+      "Social assistance projects",
+      "Cultural exchange programs",
+      "Community development"
+    ],
+    "contact": "info@frivilligcenteraarhus.dk",
+    "website": "https://www.frivilligcenteraarhus.dk"
+  },
+  {
+    "organization": "Kulturkammerater / Culture Buddies",
+    "description": "Pairs international newcomers with locals to explore cultural sites in Aarhus.",
+    "activities": [
+      "Visiting museums like ARoS",
+      "Participating in leisure activities",
+      "Intercultural friendship programs"
+    ],
+    "contact": "via Facebook at Kulturkammerater",
+    "website": "https://www.facebook.com/kulturkammerater"
+  },
+  {
+    "organization": "Cafe Mellemfolk",
+    "description": "Volunteer at a cafe that promotes sustainability, equality, and community engagement.",
+    "activities": [
+      "Barista and kitchen duties",
+      "Hosting community events",
+      "Supporting sustainability initiatives"
+    ],
+    "contact": "mellemfolk@actionaid.dk",
+    "website": "https://www.mellemfolk.dk"
+  },
+  {
+    "organization": "Grocery Assistance for the Elderly",
+    "description": "Help elderly citizens by buying and delivering groceries to their homes.",
+    "activities": [
+      "Shopping for groceries",
+      "Delivering items to elderly individuals",
+      "Providing friendly social interaction"
+    ],
+    "contact": "info@elderlycare-aarhus.dk",
+    "website": "https://www.elderlycare-aarhus.dk"
+  },
+  {
+    "organization": "Aarhus Shelters",
+    "description": "Support individuals facing homelessness by volunteering at local shelters.",
+    "activities": [
+      "Preparing meals",
+      "Providing companionship",
+      "Organizing shelter resources"
+    ],
+    "contact": "volunteer@aarhusshelters.dk",
+    "website": "https://www.aarhusshelters.dk"
+  },
+  {
+    "organization": "Beach Clean-Up Aarhus",
+    "description": "Participate in cleaning beaches around Aarhus to protect marine life and improve the environment.",
+    "activities": [
+      "Collecting litter on beaches",
+      "Sorting and recycling waste",
+      "Raising awareness about environmental protection"
+    ],
+    "contact": "cleanup@aarhusbeaches.dk",
+    "website": "https://www.aarhusbeaches.dk"
+  }
 ]
