@@ -1,8 +1,6 @@
-// Import Firebase functions
-import { initializeApp, getApps } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAAilgvycmAVskhOkm63rRdDqslhstrqfY",
   authDomain: "gogreen-69200.firebaseapp.com",
@@ -13,9 +11,7 @@ const firebaseConfig = {
   measurementId: "G-D9PGW3T8B3"
 };
 
-// Check if the Firebase app is already initialized
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-// Export the Firebase auth instance
-export const auth = getAuth(app);
-export default app;
+export default auth; // Default export

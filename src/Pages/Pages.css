@@ -1,15 +1,12 @@
-/* General Styles */
-
-/* Define CSS variables for themes */
 :root {
-  --bg-color: #EFF2F6; /* Light bluish-gray */
-  --card-color: #DDE4EB; /* Gentle blue-gray */
-  --light-color: #C9D3DC; /* Cool, muted accent */
-  --text-color: #1A191B; /* Deep black */
-  --primary-color: #238B6D; /* Fresh teal-green */
-  --primary-color-hover: #1D7359; /* Darker teal for hover */
-  --secondary-color: #2F8FBA; /* Bright blue */
-  --secondary-color-hover: #257499; /* Darker blue for hover */
+  --bg-color: #EFF2F6;
+  --card-color: #DDE4EB;
+  --light-color: #C9D3DC;
+  --text-color: #1A191B;
+  --primary-color: #238B6D;
+  --primary-color-hover: #1D7359;
+  --secondary-color: #2F8FBA;
+  --secondary-color-hover: #257499;
   --accents: #fa824c;
 }
 
@@ -130,7 +127,7 @@ a {
 
 .btn-primary:hover {
   background-color: var(--primary-color-hover);
-  color: var(--accents);
+  color: var(--bg-color);
 }
 
 .btn-secondary {
@@ -145,7 +142,7 @@ a {
 
 .btn-secondary:hover {
   background-color: var(--secondary-color-hover);
-  color: var(--accents);
+  color: var(--bg-color);
 }
 
 .theme-toggle {
@@ -281,31 +278,7 @@ a {
   background-color: var(--primary-color-hover);
 }
 
-/* Google Sign-In Button */
-.google-auth {
+.group {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.google-auth p {
-  color: var(--text-color);
-}
-
-.google-auth button {
-  padding: 12px 20px;
-  background-color: #4285F4; /* Google Blue */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.google-auth button:hover {
-  background-color: #357ae8;
 }

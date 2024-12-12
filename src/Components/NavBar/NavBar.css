@@ -3,7 +3,6 @@ nav {
     display: flex;
     justify-content: center;
     background: var(--primary-color);
-    padding-left: 2vw;
     position: fixed;
     top: 0; 
     left: 0;
@@ -31,7 +30,6 @@ nav ul {
     justify-content: right;
     align-items: center;
     margin: 0;
-    margin-right: -4vw;
 }
 
 nav ul li {
@@ -48,7 +46,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: var(--accents);
+    color: var(--bg-color);
     transition: .3s;
 }
   
@@ -122,7 +120,7 @@ nav ul li {
 }
 
 .input {
-    display: none; /* Hide the default checkbox */
+    display: none;
   }
   
   .label {
@@ -131,7 +129,7 @@ nav ul li {
     display: inline-block;
     width: 50px;
     height: 25px;
-    background-color: #ccc;
+    background-color: var(--bg-color);
     border-radius: 25px;
     transition: background-color 0.3s ease;
   }
@@ -142,16 +140,11 @@ nav ul li {
     left: 2px;
     width: 21px;
     height: 21px;
-    background-color: white;
+    background-color: var(--primary-color);
     border-radius: 50%;
     transition: transform 0.3s ease;
   }
   
-  .input:checked + .label {
-    background-color: #238B6D; /* Green for dark mode */
-  }
-  
   .input:checked + .label .circle {
-    transform: translateX(25px); /* Move the circle when checked */
+    transform: translateX(25px);
   }
-  
