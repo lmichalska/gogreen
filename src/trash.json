@@ -1,96 +1,371 @@
-[
-    { "name": "Plastic Bottle", "bin": "Plastic" },
-    { "name": "Aluminum Foil", "bin": "Metal" },
-    { "name": "Glass Bottle", "bin": "Glass" },
-    { "name": "Cardboard Packaging", "bin": "Cardboard" },
-    { "name": "Banana Peel", "bin": "Food waste" },
-    { "name": "Old T-shirt", "bin": "Large interior" },
-    { "name": "Old Battery", "bin": "Hazardous waste" },
-    { "name": "Magazines", "bin": "Paper" },
-    { "name": "Plastic Tupperware", "bin": "Plastic" },
-    { "name": "Old Phone Charger", "bin": "Electronic waste" },
-    { "name": "Coffee Cup", "bin": "Plastic" },
-    { "name": "Glass Jar", "bin": "Glass" },
-    { "name": "Plastic Packaging", "bin": "Plastic" },
-    { "name": "Shredded Paper", "bin": "Paper" },
-    { "name": "Tin Can", "bin": "Metal" },
-    { "name": "Cereal Box", "bin": "Cardboard" },
-    { "name": "Old Sneakers", "bin": "Large interior" },
-    { "name": "Aluminum Can", "bin": "Metal" },
-    { "name": "Food Scraps", "bin": "Food waste" },
-    { "name": "Cardboard Box", "bin": "Cardboard" },
-    { "name": "Plastic Utensils", "bin": "Plastic" },
-    { "name": "Old TV", "bin": "Electronic waste" },
-    { "name": "Canned Food", "bin": "Metal" },
-    { "name": "Tires", "bin": "Residual waste" },
-    { "name": "Shampoo Bottle", "bin": "Plastic" },
-    { "name": "Broken Table", "bin": "Large interior" },
-    { "name": "Coke Can", "bin": "Metal" },
-    { "name": "Cardboard Tube", "bin": "Cardboard" },
-    { "name": "Plastic Bag", "bin": "Plastic" },
-    { "name": "Plastic Straw", "bin": "Plastic" },
-    { "name": "Old Laptop", "bin": "Electronic waste" },
-    { "name": "Greasy Paper Towel", "bin": "Residual waste" },
-    { "name": "Plastic Wrap", "bin": "Plastic" },
-    { "name": "Food Packaging", "bin": "Plastic" },
-    { "name": "Metal Lid", "bin": "Metal" },
-    { "name": "Old Sofa", "bin": "Large interior" },
-    { "name": "Pizza Box", "bin": "Residual waste" },
-    { "name": "Broken Mirror", "bin": "Residual waste" },
-    { "name": "Used Napkins", "bin": "Residual waste" },
-    { "name": "Plastic Milk Carton", "bin": "Plastic" },
-    { "name": "Old Shoes", "bin": "Large interior" },
-    { "name": "Food Packaging Plastic", "bin": "Plastic" },
-    { "name": "Old Magazine", "bin": "Paper" },
-    { "name": "Plastic Gloves", "bin": "Plastic" },
-    { "name": "Broken Electronics", "bin": "Electronic waste" },
-    { "name": "Tetra Pak Carton", "bin": "Plastic" },
-    { "name": "Glass Jar Lid", "bin": "Glass" },
-    { "name": "Old Coat", "bin": "Large interior" },
-    { "name": "Broken Lamp", "bin": "Electronic waste" },
-    { "name": "Empty Juice Box", "bin": "Plastic" },
-    { "name": "Broken Fan", "bin": "Electronic waste" },
-    { "name": "Plastic Milk Jug", "bin": "Plastic" },
-    { "name": "Old Mirror", "bin": "Residual waste" },
-    { "name": "Empty Cans", "bin": "Metal" },
-    { "name": "Plastic Coffee Lid", "bin": "Plastic" },
-    { "name": "Paper Tissues", "bin": "Residual waste" },
-    { "name": "Glass Wine Bottle", "bin": "Glass" },
-    { "name": "Old Bed Frame", "bin": "Large interior" },
-    { "name": "Plastic Milk Carton", "bin": "Plastic" },
-    { "name": "Broken Refrigerator", "bin": "Electronic waste" },
-    { "name": "Food Packaging Plastic", "bin": "Plastic" },
-    { "name": "Old Telephone", "bin": "Electronic waste" },
-    { "name": "Plastic Sandwich Bag", "bin": "Plastic" },
-    { "name": "Metal Can Lid", "bin": "Metal" },
-    { "name": "Old Mattress", "bin": "Large interior" },
-    { "name": "Plastic Shopping Bag", "bin": "Plastic" },
-    { "name": "Broken Speakers", "bin": "Electronic waste" },
-    { "name": "Plastic Wrap", "bin": "Plastic" },
-    { "name": "Cardboard Tube", "bin": "Cardboard" },
-    { "name": "Batteries", "bin": "Hazardous waste" },
-    { "name": "Broken Chair", "bin": "Large interior" },
-    { "name": "Old Fan", "bin": "Electronic waste" },
-    { "name": "Old Vacuum Cleaner", "bin": "Electronic waste" },
-    { "name": "Old Shoes", "bin": "Large interior" },
-    { "name": "Old Plastic Container", "bin": "Plastic" },
-    { "name": "Styrofoam Plate", "bin": "Residual waste" },
-    { "name": "Used Paper Plates", "bin": "Residual waste" },
-    { "name": "Plastic Bottle Cap", "bin": "Plastic" },
-    { "name": "Electronic Device Charger", "bin": "Electronic waste" },
-    { "name": "Old Toys", "bin": "Large interior" },
-    { "name": "Broken Phone", "bin": "Electronic waste" },
-    { "name": "Plastic Tape", "bin": "Plastic" },
-    { "name": "Old Clock", "bin": "Large interior" },
-    { "name": "Battery Charger", "bin": "Electronic waste" },
-    { "name": "Food Wrapping", "bin": "Plastic" },
-    { "name": "Empty Plastic Cup", "bin": "Plastic" },
-    { "name": "Old Refrigerator", "bin": "Electronic waste" },
-    { "name": "Old Mirror Frame", "bin": "Large interior" },
-    { "name": "Used Light Bulb", "bin": "Hazardous waste" },
-    { "name": "Wooden Furniture", "bin": "Large interior" },
-    { "name": "Old Tools", "bin": "Large interior" },
-    { "name": "Empty Juice Carton", "bin": "Plastic" },
-    { "name": "Old Iron", "bin": "Electronic waste" }
-  ]
+{
+    "articles": [
+      {
+        "main-title": "The Impact of Recycling on Climate Change",
+        "introduction": "Recycling plays a vital role in mitigating climate change by reducing greenhouse gas emissions and conserving energy. By recycling materials, we can reduce the carbon footprint associated with manufacturing new products.",
+        "key_benefits": [
+          {
+            "title": "Reducing Carbon Emissions",
+            "description": "Recycling materials like paper, plastic, and metal uses less energy, resulting in fewer carbon emissions compared to producing new materials."
+          },
+          {
+            "title": "Lowering Fossil Fuel Dependence",
+            "description": "By reducing the need for raw materials, recycling lowers the dependence on fossil fuels, which are often used in manufacturing processes."
+          },
+          {
+            "title": "Decreasing Energy Consumption",
+            "description": "Recycling requires less energy than creating new products from virgin resources, directly lowering overall energy consumption."
+          }
+        ],
+        "tips_for_recycling": [
+          {
+            "tip": "Focus on Energy-Efficient Materials",
+            "description": "Recycling energy-intensive materials like aluminum and glass saves significant amounts of energy."
+          },
+          {
+            "tip": "Participate in Local Programs",
+            "description": "Join local recycling programs to ensure more materials are diverted from landfills and contribute to reducing emissions."
+          }
+        ],
+        "challenges": [
+          {
+            "challenge": "Improper Disposal of Electronics",
+            "description": "Electronic waste often ends up in landfills, contributing to the release of harmful gases and metals into the environment."
+          }
+        ],
+        "conclusion": "Recycling is an essential tool in the fight against climate change. By reducing waste, saving energy, and lowering emissions, we can make significant strides in curbing the effects of global warming."
+      },
+      {
+        "main-title": "How Recycling Helps Reduce Plastic Pollution",
+        "introduction": "Plastic pollution is one of the most pressing environmental issues today. Recycling plastic reduces the demand for new plastic production, curbing pollution and reducing the burden on ecosystems.",
+        "key_benefits": [
+          {
+            "title": "Decreasing Plastic Waste in Oceans",
+            "description": "Recycling plastic prevents it from ending up in oceans, where it harms marine life and disrupts ecosystems."
+          },
+          {
+            "title": "Reducing Plastic Production",
+            "description": "By recycling plastic, the need for new plastic production decreases, which reduces fossil fuel consumption and plastic pollution."
+          }
+        ],
+        "tips_for_recycling": [
+          {
+            "tip": "Recycle All Types of Plastic",
+            "description": "Different plastics should be recycled according to local guidelines. Ensure you're recycling all types to reduce environmental impact."
+          },
+          {
+            "tip": "Avoid Single-Use Plastics",
+            "description": "Opt for reusable items like bags, bottles, and containers to reduce plastic waste before it even starts."
+          }
+        ],
+        "challenges": [
+          {
+            "challenge": "Plastic Contamination",
+            "description": "Dirty plastics can contaminate recycling streams, reducing the effectiveness of recycling programs."
+          }
+        ],
+        "conclusion": "Recycling plastic is key to fighting pollution and preserving the environment. By taking action and reducing plastic use, we can minimize the harm caused to the planet."
+      },
+      {
+        "main-title": "The Role of Recycling in the Circular Economy",
+        "introduction": "The circular economy aims to minimize waste by reusing resources and keeping them in circulation. Recycling is a core element of this system, ensuring that materials are repurposed and reused instead of being discarded.",
+        "key_benefits": [
+          {
+            "title": "Maximizing Resource Use",
+            "description": "Recycling allows materials to be used multiple times, ensuring valuable resources don't go to waste."
+          },
+          {
+            "title": "Supporting Sustainable Manufacturing",
+            "description": "By recycling, manufacturers can reduce their reliance on virgin materials and lower production costs while minimizing environmental impacts."
+          }
+        ],
+        "tips_for_recycling": [
+          {
+            "tip": "Embrace the 3 Rs: Reduce, Reuse, Recycle",
+            "description": "Reducing consumption, reusing items, and recycling materials all contribute to a more sustainable circular economy."
+          },
+          {
+            "tip": "Buy Recycled Products",
+            "description": "Support the circular economy by choosing products made from recycled materials, creating a demand for more recycled goods."
+          }
+        ],
+        "challenges": [
+          {
+            "challenge": "Lack of Infrastructure",
+            "description": "Many regions still lack the proper recycling infrastructure to effectively implement a circular economy."
+          }
+        ],
+        "conclusion": "Recycling is the foundation of a circular economy. By rethinking how we use resources and embracing recycling, we can contribute to a more sustainable and environmentally friendly future."
+      },
+      {
+        "main-title": "Why Paper Recycling Matters",
+        "introduction": "Paper recycling is one of the most common and effective recycling practices. It helps conserve trees, reduce energy usage, and decrease landfill waste, contributing to environmental sustainability.",
+        "key_benefits": [
+          {
+            "title": "Conserving Trees",
+            "description": "Recycling paper reduces the need to cut down trees for raw materials, preserving forests and their ecosystems."
+          },
+          {
+            "title": "Reducing Energy Consumption",
+            "description": "Recycling paper requires less energy than producing new paper, reducing both costs and environmental impact."
+          }
+        ],
+        "tips_for_recycling": [
+          {
+            "tip": "Separate Paper from Other Materials",
+            "description": "Ensure paper is not contaminated with food or plastic so it can be effectively recycled."
+          },
+          {
+            "tip": "Opt for Recycled Paper Products",
+            "description": "Use paper products made from recycled materials to encourage the demand for recycled paper."
+          }
+        ],
+        "challenges": [
+          {
+            "challenge": "Contaminated Paper",
+            "description": "Paper that is dirty or coated with plastic cannot be recycled efficiently."
+          }
+        ],
+        "conclusion": "Recycling paper has significant environmental benefits, from saving trees to reducing energy consumption. By recycling paper, we contribute to a cleaner, greener planet."
+      }
+    ],
+    "trash_items": [
+      { "name": "Plastic Bottle", "bin": "Plastic" },
+      { "name": "Aluminum Foil", "bin": "Metal" },
+      { "name": "Glass Bottle", "bin": "Glass" },
+      { "name": "Cardboard Packaging", "bin": "Cardboard" },
+      { "name": "Banana Peel", "bin": "Food waste" },
+      { "name": "Old T-shirt", "bin": "Large interior" },
+      { "name": "Old Battery", "bin": "Hazardous waste" },
+      { "name": "Magazines", "bin": "Paper" },
+      { "name": "Plastic Tupperware", "bin": "Plastic" },
+      { "name": "Old Phone Charger", "bin": "Electronic waste" },
+      { "name": "Coffee Cup", "bin": "Plastic" },
+      { "name": "Glass Jar", "bin": "Glass" },
+      { "name": "Plastic Packaging", "bin": "Plastic" },
+      { "name": "Shredded Paper", "bin": "Paper" },
+      { "name": "Tin Can", "bin": "Metal" },
+      { "name": "Cereal Box", "bin": "Cardboard" },
+      { "name": "Old Sneakers", "bin": "Large interior" },
+      { "name": "Aluminum Can", "bin": "Metal" },
+      { "name": "Food Scraps", "bin": "Food waste" },
+      { "name": "Cardboard Box", "bin": "Cardboard" },
+      { "name": "Plastic Utensils", "bin": "Plastic" },
+      { "name": "Old TV", "bin": "Electronic waste" },
+      { "name": "Canned Food", "bin": "Metal" },
+      { "name": "Tires", "bin": "Residual waste" },
+      { "name": "Shampoo Bottle", "bin": "Plastic" },
+      { "name": "Broken Table", "bin": "Large interior" },
+      { "name": "Coke Can", "bin": "Metal" },
+      { "name": "Cardboard Tube", "bin": "Cardboard" },
+      { "name": "Plastic Bag", "bin": "Plastic" },
+      { "name": "Plastic Straw", "bin": "Plastic" },
+      { "name": "Old Laptop", "bin": "Electronic waste" },
+      { "name": "Greasy Paper Towel", "bin": "Residual waste" },
+      { "name": "Plastic Wrap", "bin": "Plastic" },
+      { "name": "Food Packaging", "bin": "Plastic" },
+      { "name": "Metal Lid", "bin": "Metal" },
+      { "name": "Old Sofa", "bin": "Large interior" },
+      { "name": "Pizza Box", "bin": "Residual waste" },
+      { "name": "Broken Mirror", "bin": "Residual waste" },
+      { "name": "Used Napkins", "bin": "Residual waste" },
+      { "name": "Plastic Milk Jug", "bin": "Plastic" },
+      { "name": "Wooden Chair", "bin": "Large interior" },
+      { "name": "Plastic Food Container", "bin": "Plastic" }
+    ],
+    "trash_cans": [
+          {
+            "type": "Plastic",
+            "should_go": [
+              "Plastic bottles",
+              "Plastic containers",
+              "Plastic bags",
+              "Plastic packaging",
+              "Plastic food containers",
+              "Plastic utensils",
+              "Plastic straws"
+            ],
+            "should_not_go": [
+              "Non-recyclable plastics",
+              "Plastic with food residue",
+              "Styrofoam"
+            ],
+            "things_to_pay_attention_to": [
+              "Ensure plastics are clean and free of food residue",
+              "Check for local recycling rules about specific types of plastic (like bags, straws)",
+              "Avoid mixing plastics with other materials like paper or metal"
+            ]
+          },
+          {
+            "type": "Metal",
+            "should_go": [
+              "Aluminum cans",
+              "Tin cans",
+              "Metal food cans",
+              "Aluminum foil",
+              "Metal lids"
+            ],
+            "should_not_go": [
+              "Non-recyclable metal (e.g., certain alloys)",
+              "Dirty or food-contaminated metal containers"
+            ],
+            "things_to_pay_attention_to": [
+              "Rinse cans to remove food residue",
+              "Avoid mixing metals with other materials like plastic or paper",
+              "Check if your local facility accepts certain types of metal"
+            ]
+          },
+          {
+            "type": "Glass",
+            "should_go": [
+              "Glass bottles",
+              "Glass jars",
+              "Glass food containers"
+            ],
+            "should_not_go": [
+              "Broken glass",
+              "Mirrors",
+              "Window glass",
+              "Ceramics"
+            ],
+            "things_to_pay_attention_to": [
+              "Rinse glass containers to remove food and liquid residue",
+              "Avoid mixing with other materials like plastic or metal",
+              "Check local guidelines for the acceptance of broken glass or specific glass types"
+            ]
+          },
+          {
+            "type": "Paper",
+            "should_go": [
+              "Newspapers",
+              "Magazines",
+              "Cardboard",
+              "Paper packaging",
+              "Shredded paper"
+            ],
+            "should_not_go": [
+              "Paper with food residue",
+              "Tissue paper and napkins",
+              "Coated or glossy paper"
+            ],
+            "things_to_pay_attention_to": [
+              "Ensure paper is clean and free of food residue",
+              "Avoid mixing paper with plastic or metal",
+              "Check if your local recycling facility accepts shredded paper"
+            ]
+          },
+          {
+            "type": "Cardboard",
+            "should_go": [
+              "Cardboard boxes",
+              "Cardboard packaging",
+              "Paperboard"
+            ],
+            "should_not_go": [
+              "Greasy or heavily stained cardboard",
+              "Cardboard with plastic or foil linings",
+              "Cardboard that has been wet or damaged"
+            ],
+            "things_to_pay_attention_to": [
+              "Flatten boxes to save space",
+              "Ensure cardboard is clean and free from contaminants",
+              "Check if your local recycling accepts cardboard with food residue"
+            ]
+          },
+          {
+            "type": "Food Waste",
+            "should_go": [
+              "Fruit and vegetable scraps",
+              "Coffee grounds",
+              "Eggshells",
+              "Bread",
+              "Leftover food (if composting is available)"
+            ],
+            "should_not_go": [
+              "Meat or dairy",
+              "Plastic-wrapped food items",
+              "Non-biodegradable items"
+            ],
+            "things_to_pay_attention_to": [
+              "Ensure food waste is placed in a compostable bag or container if required",
+              "Check if your local area accepts compostable materials or food scraps",
+              "Avoid mixing food waste with other types of trash like plastic or metal"
+            ]
+          },
+          {
+            "type": "Electronic Waste",
+            "should_go": [
+              "Old phones",
+              "Chargers",
+              "Batteries",
+              "Old laptops",
+              "Other small electronic devices"
+            ],
+            "should_not_go": [
+              "Household electronics that are still functioning (consider donating)",
+              "Non-recyclable electronic components"
+            ],
+            "things_to_pay_attention_to": [
+              "Check for local e-waste collection points",
+              "Do not dispose of electronic waste in regular trash cans",
+              "Remove any batteries or components that may pose a hazard"
+            ]
+          },
+          {
+            "type": "Hazardous Waste",
+            "should_go": [
+              "Old batteries",
+              "Paint cans",
+              "Cleaning chemicals",
+              "Pesticides",
+              "Fluorescent light bulbs"
+            ],
+            "should_not_go": [
+              "General household waste",
+              "Non-hazardous materials"
+            ],
+            "things_to_pay_attention_to": [
+              "Check for local hazardous waste disposal sites",
+              "Store hazardous waste in a secure container",
+              "Do not mix hazardous waste with other types of trash"
+            ]
+          },
+          {
+            "type": "Residual Waste",
+            "should_go": [
+              "Items that cannot be recycled or composted",
+              "Plastic with food residue",
+              "Broken or contaminated materials"
+            ],
+            "should_not_go": [
+              "Recyclable or compostable materials",
+              "Items that can be donated or reused"
+            ],
+            "things_to_pay_attention_to": [
+              "Ensure non-recyclable waste is disposed of correctly",
+              "Separate recyclable items before disposing of residual waste",
+              "Check if your area accepts certain items like broken electronics"
+            ]
+          },
+          {
+            "type": "Large Interior",
+            "should_go": [
+              "Old furniture",
+              "Mattresses",
+              "Large appliances",
+              "Large textiles"
+            ],
+            "should_not_go": [
+              "Small household waste",
+              "Electronics or hazardous items"
+            ],
+            "things_to_pay_attention_to": [
+              "Check for local collection or bulk waste programs",
+              "Avoid mixing with other types of trash",
+              "Ensure large items are clean and dry before disposal"
+            ]
+          }
+        ]
+      }
+      
   
