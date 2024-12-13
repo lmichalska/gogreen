@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database"; // Import the modular database function
 
 const firebaseConfig = {
   apiKey: "AIzaSyAAilgvycmAVskhOkm63rRdDqslhstrqfY",
@@ -11,7 +11,10 @@ const firebaseConfig = {
   measurementId: "G-D9PGW3T8B3"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
 
-export default auth; // Default export
+// Get the database instance using the modular SDK
+const database = getDatabase(firebaseApp);
+
+export { database };
