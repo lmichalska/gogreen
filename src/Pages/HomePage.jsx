@@ -1,92 +1,127 @@
+import React, { useState } from "react";
 import "./Pages.css";
-import React from "react";
-import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
-  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState("paper");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Navigate to contact page
-  const handleExploreNavigate = () => {
-    navigate('/contact');
+  const binDetails = {
+    paper: {
+      title: "Paper Recycling",
+      description: "Recycle newspapers, magazines, cardboard, and office paper. Avoid soiled paper like greasy pizza boxes or wet paper products.",
+      tips: [
+        "Flatten cardboard boxes to save space.",
+        "Remove staples or tape if possible.",
+        "Do not recycle wet or heavily soiled paper.",
+      ],
+    },
+    plastic: {
+      title: "Plastic Recycling",
+      description: "Recycle plastic bottles, containers, and bags. Avoid styrofoam, plastic wrap, or items with food residue.",
+      tips: [
+        "Rinse out bottles and containers.",
+        "Check for the recycling number on plastics.",
+        "Avoid single-use plastics where possible.",
+      ],
+    },
+    trash: {
+      title: "Mixed Trash",
+      description: "Place non-recyclable items like food scraps, soiled paper, and non-recyclable plastics in this bin.",
+      tips: [
+        "Compost food scraps instead of throwing them away, if possible.",
+        "Keep mixed trash bags sealed to prevent odors.",
+        "Do not put recyclables in the trash bin.",
+      ],
+    },
   };
 
-  // Navigate to specific volunteer opportunity details
-  const handleLearnMore = (path) => {
-    navigate(path);
-  };
+  const items = [
+    { name: "Newspaper", bin: "paper" },
+    { name: "Plastic Bottle", bin: "plastic" },
+    { name: "Cardboard", bin: "paper" },
+    { name: "Styrofoam", bin: "trash" },
+    { name: "Apple Core", bin: "trash" },
+    { name: "Plastic Bag", bin: "plastic" },
+    { name: "Greasy Pizza Box", bin: "trash" },
+  ];
+
+  const filteredItems = items.filter((item) =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
-    <main>
-      {/* Banner Section */}
-      <section className="hero" aria-labelledby="hero-heading">
-        <div className="hero-content">
-          <h1 id="hero-heading">Volunteer in Aarhus</h1>
-          <p>
-            Discover opportunities to give back, make a difference, and connect with your community.
-          </p>
-          <button 
-            onClick={handleExploreNavigate} 
-            className="btn-primary" 
-            aria-label="click to see volunteer work in Aarhus"
-          >
-            Explore Opportunities
-          </button>
+    <div className="home-page">
+      <header className="header">
+        <h1>Recycling Guide</h1>
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search for items..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button onClick={() => setSearchQuery("")}>Clear</button>
         </div>
-      </section>
+      </header>
 
-      {/* About Section */}
-      <section id="about" className="about">
-        <h2>About Us</h2>
-        <p>
-          We connect passionate volunteers with meaningful projects in Aarhus.
-          Our mission is to make volunteering accessible, impactful, and
-          inclusive for everyone.
-        </p>
-      </section>
+      <main>
+        {searchQuery ? (
+          <section className="search-results">
+            <h2>Search Results</h2>
+            {filteredItems.length > 0 ? (
+              <ul>
+                {filteredItems.map((item, index) => (
+                  <li key={index}>
+                    <strong>{item.name}</strong> belongs in the{" "}
+                    <span className={item.bin + "-text"}>
+                      {item.bin.toUpperCase()} bin
+                    </span>
+                    .
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No matching items found.</p>
+            )}
+          </section>
+        ) : (
+          <>
+            <div className="tabs">
+              <button
+              aria-label="information about paper trash"
+                className={activeTab === "paper" ? "active" : ""}
+                onClick={() => setActiveTab("paper")}
+              >
+                Paper
+              </button>
+              <button aria-label="information about plastic trash"
+                className={activeTab === "plastic" ? "active" : ""}
+                onClick={() => setActiveTab("plastic")}
+              >
+                Plastic
+              </button>
+              <button aria-label="information about mixed trash"
+                className={activeTab === "trash" ? "active" : ""}
+                onClick={() => setActiveTab("trash")}
+              >
+                Mixed Trash
+              </button>
+            </div>
 
-      {/* Opportunities Section */}
-      <section id="opportunities" className="opportunities">
-        <h2>Volunteer Opportunities</h2>
-        <ul>
-          <li>
-            <h3>Community Garden</h3>
-            <p>
-              Help maintain Aarhus' urban green spaces and grow fresh produce for the community.
-            </p>
-            <button onClick={() => handleLearnMore('/details/garden')} className="btn-secondary">
-              Learn More
-            </button>
-          </li>
-          <li>
-            <h3>Language Tutoring</h3>
-            <p>
-              Support newcomers to Aarhus by helping them learn Danish or English.
-            </p>
-            <button onClick={() => handleLearnMore('/details/tutoring')} className="btn-secondary">
-              Learn More
-            </button>
-          </li>
-          <li>
-            <h3>Event Volunteering</h3>
-            <p>
-              Be part of exciting community events and festivals in Aarhus.
-            </p>
-            <button onClick={() => handleLearnMore('/details/events')} className="btn-secondary">
-              Learn More
-            </button>
-          </li>
-        </ul>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="contact">
-        <h2>Get in Touch</h2>
-        <p>Have questions? We're here to help!</p>
-        <button onClick={() => handleExploreNavigate()} className="btn-primary">
-          Contact Us
-        </button>
-      </section>
-    </main>
+            <section className="info-section">
+              <h2>{binDetails[activeTab].title}</h2>
+              <p>{binDetails[activeTab].description}</p>
+              <h3>Tips:</h3>
+              <ul>
+                {binDetails[activeTab].tips.map((tip, index) => (
+                  <li key={index}>{tip}</li>
+                ))}
+              </ul>
+            </section>
+          </>
+        )}
+      </main>
+    </div>
   );
 };
 

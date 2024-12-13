@@ -2,10 +2,11 @@ import './NavBar.css';
 import React, { useState, useEffect } from 'react';
 
 const DarkModeToggle = () => {
-    // State to manage whether the dark mode is enabled
+    // State to manage whether dark mode is enabled
     const [isDarkMode, setIsDarkMode] = useState(() => {
-        // Check localStorage for saved theme preference, default to "light"
-        return localStorage.getItem("theme") === "dark";
+        // Check if the theme is saved in localStorage or default to dark mode
+        const savedTheme = localStorage.getItem("theme");
+        return savedTheme ? savedTheme === "dark" : true;  // Default to dark mode if no preference
     });
 
     // Update theme in the document and localStorage when the mode changes
@@ -28,7 +29,7 @@ const DarkModeToggle = () => {
                 onChange={toggleDarkMode}
             />
             <label htmlFor="dark-mode-toggle" className="label">
-                <span className="circle"></span> {/* You can style this to look like a slider */}
+                <span className="circle"></span> {/* Styled slider */}
             </label>
         </div>
     );
