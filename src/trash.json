@@ -174,198 +174,208 @@
       { "name": "Plastic Food Container", "bin": "Plastic" }
     ],
     "trash_cans": [
-          {
-            "type": "Plastic",
-            "should_go": [
-              "Plastic bottles",
-              "Plastic containers",
-              "Plastic bags",
-              "Plastic packaging",
-              "Plastic food containers",
-              "Plastic utensils",
-              "Plastic straws"
-            ],
-            "should_not_go": [
-              "Non-recyclable plastics",
-              "Plastic with food residue",
-              "Styrofoam"
-            ],
-            "things_to_pay_attention_to": [
-              "Ensure plastics are clean and free of food residue",
-              "Check for local recycling rules about specific types of plastic (like bags, straws)",
-              "Avoid mixing plastics with other materials like paper or metal"
-            ]
-          },
-          {
-            "type": "Metal",
-            "should_go": [
-              "Aluminum cans",
-              "Tin cans",
-              "Metal food cans",
-              "Aluminum foil",
-              "Metal lids"
-            ],
-            "should_not_go": [
-              "Non-recyclable metal (e.g., certain alloys)",
-              "Dirty or food-contaminated metal containers"
-            ],
-            "things_to_pay_attention_to": [
-              "Rinse cans to remove food residue",
-              "Avoid mixing metals with other materials like plastic or paper",
-              "Check if your local facility accepts certain types of metal"
-            ]
-          },
-          {
-            "type": "Glass",
-            "should_go": [
-              "Glass bottles",
-              "Glass jars",
-              "Glass food containers"
-            ],
-            "should_not_go": [
-              "Broken glass",
-              "Mirrors",
-              "Window glass",
-              "Ceramics"
-            ],
-            "things_to_pay_attention_to": [
-              "Rinse glass containers to remove food and liquid residue",
-              "Avoid mixing with other materials like plastic or metal",
-              "Check local guidelines for the acceptance of broken glass or specific glass types"
-            ]
-          },
-          {
-            "type": "Paper",
-            "should_go": [
-              "Newspapers",
-              "Magazines",
-              "Cardboard",
-              "Paper packaging",
-              "Shredded paper"
-            ],
-            "should_not_go": [
-              "Paper with food residue",
-              "Tissue paper and napkins",
-              "Coated or glossy paper"
-            ],
-            "things_to_pay_attention_to": [
-              "Ensure paper is clean and free of food residue",
-              "Avoid mixing paper with plastic or metal",
-              "Check if your local recycling facility accepts shredded paper"
-            ]
-          },
-          {
-            "type": "Cardboard",
-            "should_go": [
-              "Cardboard boxes",
-              "Cardboard packaging",
-              "Paperboard"
-            ],
-            "should_not_go": [
-              "Greasy or heavily stained cardboard",
-              "Cardboard with plastic or foil linings",
-              "Cardboard that has been wet or damaged"
-            ],
-            "things_to_pay_attention_to": [
-              "Flatten boxes to save space",
-              "Ensure cardboard is clean and free from contaminants",
-              "Check if your local recycling accepts cardboard with food residue"
-            ]
-          },
-          {
-            "type": "Food Waste",
-            "should_go": [
-              "Fruit and vegetable scraps",
-              "Coffee grounds",
-              "Eggshells",
-              "Bread",
-              "Leftover food (if composting is available)"
-            ],
-            "should_not_go": [
-              "Meat or dairy",
-              "Plastic-wrapped food items",
-              "Non-biodegradable items"
-            ],
-            "things_to_pay_attention_to": [
-              "Ensure food waste is placed in a compostable bag or container if required",
-              "Check if your local area accepts compostable materials or food scraps",
-              "Avoid mixing food waste with other types of trash like plastic or metal"
-            ]
-          },
-          {
-            "type": "Electronic Waste",
-            "should_go": [
-              "Old phones",
-              "Chargers",
-              "Batteries",
-              "Old laptops",
-              "Other small electronic devices"
-            ],
-            "should_not_go": [
-              "Household electronics that are still functioning (consider donating)",
-              "Non-recyclable electronic components"
-            ],
-            "things_to_pay_attention_to": [
-              "Check for local e-waste collection points",
-              "Do not dispose of electronic waste in regular trash cans",
-              "Remove any batteries or components that may pose a hazard"
-            ]
-          },
-          {
-            "type": "Hazardous Waste",
-            "should_go": [
-              "Old batteries",
-              "Paint cans",
-              "Cleaning chemicals",
-              "Pesticides",
-              "Fluorescent light bulbs"
-            ],
-            "should_not_go": [
-              "General household waste",
-              "Non-hazardous materials"
-            ],
-            "things_to_pay_attention_to": [
-              "Check for local hazardous waste disposal sites",
-              "Store hazardous waste in a secure container",
-              "Do not mix hazardous waste with other types of trash"
-            ]
-          },
-          {
-            "type": "Residual Waste",
-            "should_go": [
-              "Items that cannot be recycled or composted",
-              "Plastic with food residue",
-              "Broken or contaminated materials"
-            ],
-            "should_not_go": [
-              "Recyclable or compostable materials",
-              "Items that can be donated or reused"
-            ],
-            "things_to_pay_attention_to": [
-              "Ensure non-recyclable waste is disposed of correctly",
-              "Separate recyclable items before disposing of residual waste",
-              "Check if your area accepts certain items like broken electronics"
-            ]
-          },
-          {
-            "type": "Large Interior",
-            "should_go": [
-              "Old furniture",
-              "Mattresses",
-              "Large appliances",
-              "Large textiles"
-            ],
-            "should_not_go": [
-              "Small household waste",
-              "Electronics or hazardous items"
-            ],
-            "things_to_pay_attention_to": [
-              "Check for local collection or bulk waste programs",
-              "Avoid mixing with other types of trash",
-              "Ensure large items are clean and dry before disposal"
-            ]
-          }
-        ]
+        {
+          "type": "Plastic",
+          "description": "Handles most recyclable plastic items like bottles, containers, and packaging.",
+          "shouldGo": [
+            "Plastic bottles",
+            "Plastic containers",
+            "Plastic bags",
+            "Plastic packaging",
+            "Plastic food containers",
+            "Plastic utensils",
+            "Plastic straws"
+          ],
+          "shouldNotGo": [
+            "Non-recyclable plastics",
+            "Plastic with food residue",
+            "Styrofoam"
+          ],
+          "payAttention": [
+            "Ensure plastics are clean and free of food residue",
+            "Check for local recycling rules about specific types of plastic (like bags, straws)",
+            "Avoid mixing plastics with other materials like paper or metal"
+          ]
+        },
+        {
+          "type": "Metal",
+          "description": "Accepts recyclable metal items like cans, lids, and foil.",
+          "shouldGo": [
+            "Aluminum cans",
+            "Tin cans",
+            "Metal food cans",
+            "Aluminum foil",
+            "Metal lids"
+          ],
+          "shouldNotGo": [
+            "Non-recyclable metal (e.g., certain alloys)",
+            "Dirty or food-contaminated metal containers"
+          ],
+          "payAttention": [
+            "Rinse cans to remove food residue",
+            "Avoid mixing metals with other materials like plastic or paper",
+            "Check if your local facility accepts certain types of metal"
+          ]
+        },
+        {
+          "type": "Glass",
+          "description": "For glass bottles, jars, and containers that can be recycled.",
+          "shouldGo": [
+            "Glass bottles",
+            "Glass jars",
+            "Glass food containers"
+          ],
+          "shouldNotGo": [
+            "Broken glass",
+            "Mirrors",
+            "Window glass",
+            "Ceramics"
+          ],
+          "payAttention": [
+            "Rinse glass containers to remove food and liquid residue",
+            "Avoid mixing with other materials like plastic or metal",
+            "Check local guidelines for the acceptance of broken glass or specific glass types"
+          ]
+        },
+        {
+          "type": "Paper",
+          "description": "Covers recyclable paper products such as newspapers and magazines.",
+          "shouldGo": [
+            "Newspapers",
+            "Magazines",
+            "Cardboard",
+            "Paper packaging",
+            "Shredded paper"
+          ],
+          "shouldNotGo": [
+            "Paper with food residue",
+            "Tissue paper and napkins",
+            "Coated or glossy paper"
+          ],
+          "payAttention": [
+            "Ensure paper is clean and free of food residue",
+            "Avoid mixing paper with plastic or metal",
+            "Check if your local recycling facility accepts shredded paper"
+          ]
+        },
+        {
+          "type": "Cardboard",
+          "description": "Designed for clean cardboard, including boxes and packaging.",
+          "shouldGo": [
+            "Cardboard boxes",
+            "Cardboard packaging",
+            "Paperboard"
+          ],
+          "shouldNotGo": [
+            "Greasy or heavily stained cardboard",
+            "Cardboard with plastic or foil linings",
+            "Cardboard that has been wet or damaged"
+          ],
+          "payAttention": [
+            "Flatten boxes to save space",
+            "Ensure cardboard is clean and free from contaminants",
+            "Check if your local recycling accepts cardboard with food residue"
+          ]
+        },
+        {
+          "type": "Food Waste",
+          "description": "Best for compostable food scraps like fruits, vegetables, and leftovers.",
+          "shouldGo": [
+            "Fruit and vegetable scraps",
+            "Coffee grounds",
+            "Eggshells",
+            "Bread",
+            "Leftover food (if composting is available)"
+          ],
+          "shouldNotGo": [
+            "Meat or dairy",
+            "Plastic-wrapped food items",
+            "Non-biodegradable items"
+          ],
+          "payAttention": [
+            "Ensure food waste is placed in a compostable bag or container if required",
+            "Check if your local area accepts compostable materials or food scraps",
+            "Avoid mixing food waste with other types of trash like plastic or metal"
+          ]
+        },
+        {
+          "type": "Electronic Waste",
+          "description": "Used for disposing of old electronics like phones, chargers, and laptops.",
+          "shouldGo": [
+            "Old phones",
+            "Chargers",
+            "Batteries",
+            "Old laptops",
+            "Other small electronic devices"
+          ],
+          "shouldNotGo": [
+            "Household electronics that are still functioning (consider donating)",
+            "Non-recyclable electronic components"
+          ],
+          "payAttention": [
+            "Check for local e-waste collection points",
+            "Do not dispose of electronic waste in regular trash cans",
+            "Remove any batteries or components that may pose a hazard"
+          ]
+        },
+        {
+          "type": "Hazardous Waste",
+          "description": "Handles materials like chemicals, batteries, and paint that require special disposal.",
+          "shouldGo": [
+            "Old batteries",
+            "Paint cans",
+            "Cleaning chemicals",
+            "Pesticides",
+            "Fluorescent light bulbs"
+          ],
+          "shouldNotGo": [
+            "General household waste",
+            "Non-hazardous materials"
+          ],
+          "payAttention": [
+            "Check for local hazardous waste disposal sites",
+            "Store hazardous waste in a secure container",
+            "Do not mix hazardous waste with other types of trash"
+          ]
+        },
+        {
+          "type": "Residual Waste",
+          "description": "Reserved for items that cannot be recycled, composted, or reused.",
+          "shouldGo": [
+            "Items that cannot be recycled or composted",
+            "Plastic with food residue",
+            "Broken or contaminated materials"
+          ],
+          "shouldNotGo": [
+            "Recyclable or compostable materials",
+            "Items that can be donated or reused"
+          ],
+          "payAttention": [
+            "Ensure non-recyclable waste is disposed of correctly",
+            "Separate recyclable items before disposing of residual waste",
+            "Check if your area accepts certain items like broken electronics"
+          ]
+        },
+        {
+          "type": "Large Interior",
+          "description": "For bulky household items like furniture, mattresses, and appliances.",
+          "shouldGo": [
+            "Old furniture",
+            "Mattresses",
+            "Large appliances",
+            "Large textiles"
+          ],
+          "shouldNotGo": [
+            "Small household waste",
+            "Electronics or hazardous items"
+          ],
+          "payAttention": [
+            "Check for local collection or bulk waste programs",
+            "Avoid mixing with other types of trash",
+            "Ensure large items are clean and dry before disposal"
+          ]
+        }
+      ]      
       }
       
   

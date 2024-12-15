@@ -39,11 +39,7 @@ a {
     font-size: 1.5rem;
     text-align: center;
   }
-  
-  .nav-links li a:hover {
-    color: var(--bg-color); /* Change to preferred hover color */
-    transition: color 0.3s ease;
-  }
+
   .dark-mode-toggle {
     display: flex;
     align-items: center;

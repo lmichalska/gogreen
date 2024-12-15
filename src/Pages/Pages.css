@@ -177,7 +177,7 @@ a {
 .droppableArea p {
   margin: 10px 0;
   font-weight: bold;
-  color: var(--text-color);
+  color: black;
 }
 
 /* Bin-Specific Styles */

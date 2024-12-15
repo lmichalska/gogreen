@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ref, get } from "firebase/database";
-import { database } from "../firebase-config"; // Import your Firebase database config
+import { database } from "../firebase-config";
 import "./Pages.css";
 
 const HomePage = () => {
@@ -8,43 +8,47 @@ const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [trashItems, setTrashItems] = useState([]);
   const [binDetails, setBinDetails] = useState({});
-  const [loading, setLoading] = useState(true);  // New state for loading
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);  // Set loading to true when starting the fetch
-
+      setLoading(true);
       try {
-        // Fetching trash items from Firebase
-        const itemsSnapshot = await get(ref(database, "trash_items"));
-        const binsSnapshot = await get(ref(database, "trash_cans"));
+        // References to database nodes
+        const itemsRef = ref(database, "trash_items");
+        const binsRef = ref(database, "trash_cans");
 
-        // Log the data to see if it's being fetched correctly
-        console.log("Items Snapshot:", itemsSnapshot.val());
-        console.log("Bins Snapshot:", binsSnapshot.val());
+        // Fetching data from Firebase
+        const [itemsSnapshot, binsSnapshot] = await Promise.all([
+          get(itemsRef),
+          get(binsRef),
+        ]);
 
+        // Processing trash items
         if (itemsSnapshot.exists()) {
+          const items = itemsSnapshot.val();
           setTrashItems(
-            Object.entries(itemsSnapshot.val()).map(([key, value]) => ({
+            Object.entries(items).map(([key, value]) => ({
               ...value,
               id: key,
             }))
           );
         } else {
-          console.log("No trash items found");
-          setTrashItems([]);  // Handle case when no items are found
+          console.warn("No trash items found");
+          setTrashItems([]);
         }
 
+        // Processing trash bin details
         if (binsSnapshot.exists()) {
           setBinDetails(binsSnapshot.val());
         } else {
-          console.log("No trash cans data found");
-          setBinDetails({});  // Handle case when no bins are found
+          console.warn("No trash bin details found");
+          setBinDetails({});
         }
       } catch (error) {
-        console.error("Error fetching data from Firebase:", error);
+        console.error("Error fetching data from Firebase:", error.message);
       } finally {
-        setLoading(false);  // Set loading to false when done
+        setLoading(false);
       }
     };
 
@@ -74,59 +78,71 @@ const HomePage = () => {
       <main>
         {loading ? (
           <p>Loading...</p>
+        ) : searchQuery ? (
+          <section className="search-results">
+            <h2>Search Results</h2>
+            {filteredItems.length > 0 ? (
+              <ul>
+                {filteredItems.map((item) => (
+                  <li key={item.id}>
+                    <strong>{item.name}</strong> belongs in the{" "}
+                    <span className={item.bin + "-text"}>
+                      {item.bin.toUpperCase()} bin
+                    </span>
+                    .
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No matching items found.</p>
+            )}
+          </section>
         ) : (
           <>
-            {searchQuery ? (
-              <section className="search-results">
-                <h2>Search Results</h2>
-                {filteredItems.length > 0 ? (
+            <div className="tabs">
+              {Object.keys(binDetails).map((binType) => (
+                <button
+                  key={binType}
+                  aria-label={`Information about ${binType} trash`}
+                  className={activeTab === binType ? "active" : ""}
+                  onClick={() => setActiveTab(binType)}
+                >
+                  {binType.charAt(0).toUpperCase() + binType.slice(1)}
+                </button>
+              ))}
+            </div>
+
+            <section className="info-section">
+              {binDetails[activeTab] ? (
+                <>
+                  <h2>{binDetails[activeTab].type}</h2>
+                  <p>{binDetails[activeTab].description}</p>
+
+                  <h3>Should Go:</h3>
                   <ul>
-                    {filteredItems.map((item, index) => (
-                      <li key={index}>
-                        <strong>{item.name}</strong> belongs in the{" "}
-                        <span className={item.bin + "-text"}>
-                          {item.bin.toUpperCase()} bin
-                        </span>
-                        .
-                      </li>
+                    {binDetails[activeTab].shouldGo?.map((item, index) => (
+                      <li key={index}>{item}</li>
                     ))}
                   </ul>
-                ) : (
-                  <p>No matching items found.</p>
-                )}
-              </section>
-            ) : (
-              <>
-                <div className="tabs">
-                  {Object.keys(binDetails).length > 0 &&
-                    Object.keys(binDetails).map((binType) => (
-                      <button
-                        key={binType}
-                        aria-label={`Information about ${binType} trash`}
-                        className={activeTab === binType ? "active" : ""}
-                        onClick={() => setActiveTab(binType)}
-                      >
-                        {binType.charAt(0).toUpperCase() + binType.slice(1)}
-                      </button>
-                    ))}
-                </div>
 
-                <section className="info-section">
-                  {binDetails[activeTab] && (
-                    <>
-                      <h2>{binDetails[activeTab].title}</h2>
-                      <p>{binDetails[activeTab].description}</p>
-                      <h3>Tips:</h3>
-                      <ul>
-                        {binDetails[activeTab].tips?.map((tip, index) => (
-                          <li key={index}>{tip}</li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </section>
-              </>
-            )}
+                  <h3>Shouldn't Go:</h3>
+                  <ul>
+                    {binDetails[activeTab].shouldNotGo?.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+
+                  <h3>Pay Attention To:</h3>
+                  <ul>
+                    {binDetails[activeTab].payAttention?.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <p>No details available for this bin.</p>
+              )}
+            </section>
           </>
         )}
       </main>
