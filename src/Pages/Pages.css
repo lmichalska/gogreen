@@ -9,6 +9,7 @@
   --secondary-color: #2E7D32; /* Deeper, earthy green */
   --secondary-color-hover: #1B5E20; /* Darker shade for hover */
   --accents: #FF6F61; /* Soft coral for accents (energy and warmth) */
+  --nav-color: #F9F9F9;
 }
 
 [data-theme="light"] {
@@ -22,11 +23,16 @@
   --secondary-color: #0288D1; /* Blue for secondary elements (trust, water) */
   --secondary-color-hover: #0277BD; /* Darker blue for hover */
   --accents: #FF7043; /* Warm coral for action buttons */
+  --nav-color: #F9F9F9;
 }
 
 main {
   padding: 20px;
   margin-top: 3vh;
+  width: 100vw;
+}
+html {
+  background-color: var(--bg-color);
 }
 
 /* Headings */
@@ -78,65 +84,6 @@ a {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Hero Section */
-.hero {
-  background-color: var(--light-color);
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.hero-content {
-  max-width: 600px;
-  margin: auto;
-}
-
-/* About Section */
-.about {
-  margin: 40px 0;
-  padding: 20px;
-  background-color: var(--card-color);
-}
-
-/* Opportunities Section */
-.opportunities ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.opportunities li {
-  margin: 20px 0;
-  padding: 20px;
-  background-color: var(--card-color);
-  border-radius: 10px;
-}
-
-.opportunities h3 {
-  margin: 0 0 10px;
-}
-
-/* Contact Section */
-.contact {
-  background-color: var(--card-color);
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.nav-prompt {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.nav-prompt p {
-  color: var(--text-color);
-}
-
-.link-button {
-  color: var(--primary-color);
-  cursor: pointer;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
 /* Available Items Section */
 .availableItems {
   display: flex;
@@ -149,7 +96,7 @@ a {
   background-color: #ffcc00;
   border: 1px solid #ddd;
   border-radius: 5px;
-  width: 35%;
+  width: 36%;
   cursor: move;
   transition: background-color 0.3s ease;
 }
@@ -159,6 +106,7 @@ a {
   display: flex;
   justify-content: space-around;
   gap: 20px;
+  width: 90%;
 }
 
 .droppableArea {
@@ -275,4 +223,43 @@ a {
 .search-results li {
   margin-bottom: 10px;
   line-height: 1.5;
+}
+
+.dropdown {
+  margin: 20px 0;
+}
+
+select {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.article-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.article-item h2 {
+  color: #1e90ff;
+  margin: 0;
+}
+
+.article-item p {
+  color: #555;
+}
+
+.article {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.info-section {
+  width: 90%;
 }

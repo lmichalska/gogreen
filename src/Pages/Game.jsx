@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Pages.css";
+import "./Game.css";
 
 const items = [
   { name: "🗞️ Paper", type: "paper", id: "paper-1" },

@@ -4,7 +4,7 @@ import { database } from "../firebase-config";
 import "./Pages.css";
 
 const HomePage = () => {
-  const [activeTab, setActiveTab] = useState("paper");
+  const [activeBin, setActiveBin] = useState("residual_waste");
   const [searchQuery, setSearchQuery] = useState("");
   const [trashItems, setTrashItems] = useState([]);
   const [binDetails, setBinDetails] = useState({});
@@ -40,7 +40,14 @@ const HomePage = () => {
 
         // Processing trash bin details
         if (binsSnapshot.exists()) {
-          setBinDetails(binsSnapshot.val());
+          const bins = binsSnapshot.val();
+          setBinDetails(bins);
+
+          // Ensure the default bin is valid
+          if (!bins["residual_waste"]) {
+            console.warn("Default bin 'residual_waste' not found. Defaulting to the first available bin.");
+            setActiveBin(Object.keys(bins)[0]); // Set to the first bin if residual_waste doesn't exist
+          }
         } else {
           console.warn("No trash bin details found");
           setBinDetails({});
@@ -59,6 +66,14 @@ const HomePage = () => {
   const filteredItems = trashItems.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // Extract bin types from binDetails for the dropdown
+  const binTypes = Object.entries(binDetails).map(([id, details]) => ({
+    id,
+    name: details.type, // Use the "type" field for display
+  }));
+
+  const activeBinDetails = binDetails[activeBin];
 
   return (
     <div className="home-page">
@@ -99,42 +114,42 @@ const HomePage = () => {
           </section>
         ) : (
           <>
-            <div className="tabs">
-              {Object.keys(binDetails).map((binType) => (
-                <button
-                  key={binType}
-                  aria-label={`Information about ${binType} trash`}
-                  className={activeTab === binType ? "active" : ""}
-                  onClick={() => setActiveTab(binType)}
-                >
-                  {binType.charAt(0).toUpperCase() + binType.slice(1)}
-                </button>
-              ))}
+            {/* Dropdown for bin selection */}
+            <div className="dropdown">
+              <label htmlFor="bin-select">Select Bin Type: </label>
+              <select
+                id="bin-select"
+                value={activeBin}
+                onChange={(e) => setActiveBin(e.target.value)}
+              >
+                {binTypes.map(({ id, name }) => (
+                  <option key={id} value={id}>
+                    {name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <section className="info-section">
-              {binDetails[activeTab] ? (
+              {activeBinDetails ? (
                 <>
-                  <h2>{binDetails[activeTab].type}</h2>
-                  <p>{binDetails[activeTab].description}</p>
-
+                  <h2>{activeBinDetails.type}</h2>
+                  <p>{activeBinDetails.description}</p>
+                  <ul>
+                    {activeBinDetails.payAttention?.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
                   <h3>Should Go:</h3>
                   <ul>
-                    {binDetails[activeTab].shouldGo?.map((item, index) => (
+                    {activeBinDetails.shouldGo?.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
 
                   <h3>Shouldn't Go:</h3>
                   <ul>
-                    {binDetails[activeTab].shouldNotGo?.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-
-                  <h3>Pay Attention To:</h3>
-                  <ul>
-                    {binDetails[activeTab].payAttention?.map((item, index) => (
+                    {activeBinDetails.shouldNotGo?.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>

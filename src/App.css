@@ -1,11 +1,19 @@
 /* For mobile devices, no additional styles */
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;}
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.app-container {
+  width: 100vw;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+}
 
 /* On desktop, wrap the app in a "smartphone-like" container */
 @media (min-width: 500px) {
@@ -39,30 +47,4 @@ body {
     z-index: 1; /* Ensure it stays on top of the content */
     background-color: var(--bg-color); /* Ensure it blends well */
   }
-}
-.articles-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.article-item {
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.article-item h2 {
-  color: #1e90ff;
-  margin: 0;
-}
-
-.article-item p {
-  color: #555;
-}
-
-.article {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
 }
