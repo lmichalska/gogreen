@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Game.css";
+import "./Pages.css";
 
 const items = [
   { name: "🗞️ Paper", type: "paper", id: "paper-1" },
@@ -10,7 +10,7 @@ const items = [
   { name: "🍎 Apple Core", type: "trash", id: "trash-2" },
 ];
 
-const DroppableArea = ({ type, setScore, setBinItems, binItems, id, setMessage }) => {
+const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => {
   const drop = (e) => {
     e.preventDefault();
     const itemId = e.dataTransfer.getData("itemId");
@@ -39,34 +39,38 @@ const DroppableArea = ({ type, setScore, setBinItems, binItems, id, setMessage }
 
   return (
     <div
-      className={`droppableArea ${type}-bin`}
+      className={`dropBins ${type}-bin`}
       id={id}
       onDrop={drop}
       onDragOver={allowDrop}
       onDragEnter={dragEnter}
       onDragLeave={dragLeave}
+      role="region"
+      aria-labelledby={`${id}-label`}
     >
-      <p>{binName} Bin</p>
-      {binItems.map((itemId) => {
-        const item = items.find((item) => item.id === itemId);
-        return (
-          <div key={item.id} className="dropped-item">
-            {item.name}
-          </div>
-        );
-      })}
+      <p id={`${id}-label`}>{binName} Bin</p>
+      <ul aria-live="polite" className="dropped-items">
+        {binItems.map((itemId) => {
+          const item = items.find((item) => item.id === itemId);
+          return (
+            <li key={item.id} className="dropped-item">
+              {item.name}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };
 
-const DraggableThing = ({ id, name, type }) => {
+const Trash = ({ id, name, type }) => {
   const dragStart = (e) => {
     e.dataTransfer.setData("itemId", id);
     e.dataTransfer.setData("itemType", type);
 
     // Create and set custom drag image
     const dragImage = document.createElement("div");
-    dragImage.className = "custom-drag-image";
+    dragImage.className = "drag-image";
     dragImage.textContent = name;
     document.body.appendChild(dragImage);
     e.dataTransfer.setDragImage(dragImage, 0, 0);
@@ -76,7 +80,7 @@ const DraggableThing = ({ id, name, type }) => {
 
   const dragEnd = (e) => {
     e.target.classList.remove("dragging");
-    const customDragImage = document.querySelector(".custom-drag-image");
+    const customDragImage = document.querySelector(".drag-image");
     if (customDragImage) {
       customDragImage.remove();
     }
@@ -84,17 +88,19 @@ const DraggableThing = ({ id, name, type }) => {
 
   return (
     <div
-      className="draggableThing"
+      className="trash"
       id={id}
       draggable="true"
       onDragStart={dragStart}
       onDragEnd={dragEnd}
+      role="button"
+      aria-grabbed="false"
+      aria-label={`Draggable item: ${name}`}
     >
       {name}
     </div>
   );
 };
-
 
 const Game = () => {
   const [score, setScore] = useState(0);
@@ -105,18 +111,19 @@ const Game = () => {
   const totalItems = items.length;
 
   return (
-    <main>
+    <main className="info-section">
       <h1>Recycling Game</h1>
       {score === totalItems ? (
-        <div className="congratulations">
+        <div className="congratulations" role="alert" aria-live="assertive">
           <h2>Congratulations! 🎉</h2>
           <p>You sorted all the trash correctly! Come back tomorrow for more challenges.</p>
         </div>
       ) : (
         <>
-          <div className="availableItems">
+        <p>Put trash in the correct trash bins.</p>
+          <div className="availableItems" aria-labelledby="available-trash-items">
             {items.map((item) => (
-              <DraggableThing
+              <Trash
                 key={item.id}
                 id={item.id}
                 name={item.name}
@@ -124,9 +131,8 @@ const Game = () => {
               />
             ))}
           </div>
-
-          <div className="bins">
-            <DroppableArea
+          <div className="bins" aria-labelledby="trash-bins">
+            <DropBins
               type="paper"
               setScore={setScore}
               setBinItems={setPaperBinItems}
@@ -134,7 +140,7 @@ const Game = () => {
               id="paper-bin"
               setMessage={setMessage}
             />
-            <DroppableArea
+            <DropBins
               type="plastic"
               setScore={setScore}
               setBinItems={setPlasticBinItems}
@@ -142,7 +148,7 @@ const Game = () => {
               id="plastic-bin"
               setMessage={setMessage}
             />
-            <DroppableArea
+            <DropBins
               type="trash"
               setScore={setScore}
               setBinItems={setTrashBinItems}
@@ -152,10 +158,10 @@ const Game = () => {
             />
           </div>
 
-          <div className="score">
+          <div className="score" aria-live="polite">
             <p>Score: {score}</p>
           </div>
-          <div className="message">
+          <div className="message" role="status" aria-live="polite">
             <p>{message}</p>
           </div>
         </>

@@ -1,4 +1,3 @@
-/* For mobile devices, no additional styles */
 body {
   margin: 0;
   padding: 0;
@@ -15,7 +14,7 @@ body {
   flex-direction: column;
 }
 
-/* On desktop, wrap the app in a "smartphone-like" container */
+/* Desktop view */
 @media (min-width: 500px) {
   body {
     display: flex;
@@ -31,20 +30,19 @@ body {
     border-radius: 36px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     background-color: var(--bg-color);
-    position: fixed; /* Keeps it fixed on the screen */
-    top: 50%; /* Centers vertically */
-    left: 50%; /* Centers horizontally */
-    transform: translate(-50%, -50%); /* Adjust for exact center */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     overflow: hidden;
   }
 
-  /* NavBar should be fixed at the top inside the container */
   .app-container .navbar {
-    position: fixed; /* Sticks the navbar to the top */
+    position: fixed;
     top: 0;
-    z-index: 1; /* Ensure it stays on top of the content */
-    background-color: var(--bg-color); /* Ensure it blends well */
+    z-index: 1;
+    background-color: var(--bg-color);
   }
 }
