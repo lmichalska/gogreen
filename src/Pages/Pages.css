@@ -188,6 +188,9 @@ button {
 .trash-text {
   color: #8b4513;
 }
+ul li, .info-section h2, label {
+  color: var(--text-color);
+}
 
 /* Search Results Section */
 .search-results {
@@ -313,7 +316,6 @@ dropdown select {
 .info-section h2 {
   font-size: 1.8rem;
   margin-bottom: 10px;
-  color: var(--accent-color);
 }
 
 .info-section p {
@@ -323,7 +325,6 @@ dropdown select {
 .info-section ul {
   margin: 10px 0;
   padding-left: 20px;
-  list-style: square;
 }
 
 /* Search Results */
