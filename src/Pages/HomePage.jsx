@@ -151,10 +151,10 @@ const HomePage = () => {
               </select>
             </div>
 
-            <section className="info-section" aria-labelledby="bin-info-heading">
+            <section className="info-section" aria-labelledby="bin-info">
               {activeBinDetails ? (
                 <>
-                  <h2 id="bin-info-heading">{activeBinDetails.type}</h2>
+                  <h2>{activeBinDetails.type}</h2>
                   <p>{activeBinDetails.description}</p>
                   {activeBinDetails.payAttention && (
                     <>
