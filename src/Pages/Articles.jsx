@@ -7,11 +7,10 @@ const ArticlesPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchPerformed, setSearchPerformed] = useState(false);
-
   const endpoint =
     "https://gogreen-69200-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
 
-  // Fetch articles from Firebase
+  // Fetch articles
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -34,7 +33,7 @@ const ArticlesPage = () => {
     fetchArticles();
   }, []);
 
-  // Filter articles based on the search query
+  // Filter articles (search)
   const filteredArticles = articles.filter((article) =>
     article["main-title"].toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -48,6 +47,9 @@ const ArticlesPage = () => {
     setSearchPerformed(false);
   };
 
+
+
+  
   return (
     <main>
       <h1>Articles on Recycling</h1>

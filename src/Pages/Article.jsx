@@ -2,21 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const ArticlePage = () => {
-  const { articleId } = useParams(); // Get the article ID from URL params
-  const [article, setArticle] = useState(null); // State to store the article data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const { articleId } = useParams();
+  const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const endpoint = "https://gogreen-69200-default-rtdb.europe-west1.firebasedatabase.app/articles.json"; 
 
-  const endpoint = "https://gogreen-69200-default-rtdb.europe-west1.firebasedatabase.app/articles.json"; // Firebase endpoint
-
-  // Fetch article from Firebase by ID
+  // Fetch article by ID
   useEffect(() => {
     const fetchArticle = async () => {
       try {
         const response = await fetch(endpoint);
         const data = await response.json();
-
-        // Find the article by ID (use articleId from params)
         const articleData = Object.keys(data).find(key => key === articleId);
         
         if (articleData) {
@@ -33,43 +30,76 @@ const ArticlePage = () => {
     };
 
     fetchArticle();
-  }, [articleId]); // Run when articleId changes
+  }, [articleId]);
 
-  if (loading) return <p>Loading article...</p>;
-  if (error) return <p>{error}</p>;
-  if (!article) return <p>Article not found!</p>;
+  // Loading state
+  if (loading) return <p role="status" aria-live="polite">Loading article...</p>;
+  
+  // Error state
+  if (error) return <p role="alert">{error}</p>;
+  
+  // Article not found
+  if (!article) return <p role="alert">Article not found!</p>;
 
+
+
+
+
+  
   return (
-    <div className="article">
-      <h1>{article["main-title"]}</h1>
-      <p>{article.introduction}</p>
-      <h3>Key Benefits:</h3>
-      <ul>
-        {article.key_benefits && article.key_benefits.map((benefit, index) => (
-          <li key={index}>
-            <strong>{benefit.title}:</strong> {benefit.description}
-          </li>
-        ))}
-      </ul>
-      <h3>Tips for Recycling:</h3>
-      <ul>
-        {article.tips_for_recycling && article.tips_for_recycling.map((tip, index) => (
-          <li key={index}>
-            <strong>{tip.tip}:</strong> {tip.description}
-          </li>
-        ))}
-      </ul>
-      <h3>Challenges:</h3>
-      <ul>
-        {article.challenges && article.challenges.map((challenge, index) => (
-          <li key={index}>
-            <strong>{challenge.challenge}:</strong> {challenge.description}
-          </li>
-        ))}
-      </ul>
-      <h3>Conclusion:</h3>
-      <p>{article.conclusion}</p>
-    </div>
+    <main aria-labelledby="article-title">
+      <header>
+        <h1 id="article-title">{article["main-title"]}</h1>
+      </header>
+      <section className="info-section" aria-labelledby="introduction-heading">
+        <h2 id="introduction-heading">Introduction</h2>
+        <p>{article.introduction}</p>
+      </section>
+
+      {article.key_benefits && (
+        <section aria-labelledby="benefits-heading">
+          <h2 id="benefits-heading">Key Benefits</h2>
+          <ul>
+            {article.key_benefits.map((benefit, index) => (
+              <li key={index}>
+                <strong>{benefit.title}:</strong> {benefit.description}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {article.tips_for_recycling && (
+        <section aria-labelledby="tips-heading">
+          <h2 id="tips-heading">Tips for Recycling</h2>
+          <ul>
+            {article.tips_for_recycling.map((tip, index) => (
+              <li key={index}>
+                <strong>{tip.tip}:</strong> {tip.description}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {article.challenges && (
+        <section aria-labelledby="challenges-heading">
+          <h2 id="challenges-heading">Challenges</h2>
+          <ul>
+            {article.challenges.map((challenge, index) => (
+              <li key={index}>
+                <strong>{challenge.challenge}:</strong> {challenge.description}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section aria-labelledby="conclusion-heading">
+        <h2 id="conclusion-heading">Conclusion</h2>
+        <p>{article.conclusion}</p>
+      </section>
+    </main>
   );
 };
 

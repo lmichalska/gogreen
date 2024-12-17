@@ -87,73 +87,88 @@ const HomePage = () => {
       <header className="header">
         <h1>Recycling Guide</h1>
         <div className="search-bar">
-          <input
-            id="search-input"
-            type="text"
-            placeholder="Search for items..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-            aria-label="Search for recycling items"
-          />
-          <button
-            onClick={searchPerformed ? () => setSearchQuery("") : handleSearch}
-            aria-label={
-              searchPerformed ? "Clear search input" : "Perform search"
-            }
-          >
-            {searchPerformed ? "Clear" : "Search"}
-          </button>
+          <div className="search-bar">
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search for items..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch(); // Trigger search on Enter
+                }
+              }}
+              aria-label="Search for recycling items"
+            />
+            <button
+              onClick={
+                searchPerformed ? () => setSearchQuery("") : handleSearch
+              }
+              aria-label={
+                searchPerformed ? "Clear search input" : "Perform search"
+              }
+            >
+              {searchPerformed ? "Clear" : "Search"}
+            </button>
+          </div>
         </div>
       </header>
-        {loading ? (
-          <p role="status" aria-live="polite">
-            Loading...
-          </p>
-        ) : searchQuery && searchPerformed ? (
-          <section className="search-results">
-            <h2 id="search-results-heading">Search Results</h2>
-            {filteredItems.length > 0 ? (
-              <ul>
-                {filteredItems.map((item) => (
-                  <li key={item.id}>
-                    <strong>{item.name}</strong> belongs in the{" "}
-                    <span
-                      className={item.bin + "-text"}
-                      aria-label={`Bin type: ${item.bin}`}
-                    >
-                      {item.bin.toUpperCase()} bin
-                    </span>
-                    .
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>No matching items found.</p>
-            )}
-          </section>
-        ) : (
-          <>
-            <div className="dropdown">
-              <label htmlFor="bin-select">Select Bin Type: </label>
-              <select
-                id="bin-select"
-                value={activeBin}
-                onChange={(e) => setActiveBin(e.target.value)}
-                aria-label="Select a bin type"
-              >
-                {binTypes.map(({ id, name }) => (
-                  <option key={id} value={id}>
-                    {name}
-                  </option>
-                ))}
-              </select>
-            </div>
+      {loading ? (
+        <p role="status" aria-live="polite">
+          Loading...
+        </p>
+      ) : searchQuery && searchPerformed ? (
+        <section className="search-results">
+          <h2 id="search-results-heading">Search Results</h2>
+          {filteredItems.length > 0 ? (
+            <ul>
+              {filteredItems.map((item) => (
+                <li key={item.id}>
+                  <strong>{item.name}</strong> belongs in the{" "}
+                  <span
+                    className={item.bin + "-text"}
+                    aria-label={`Bin type: ${item.bin}`}
+                  >
+                    {item.bin.toUpperCase()} bin
+                  </span>
+                  .
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No matching items found.</p>
+          )}
+        </section>
+      ) : (
+        <>
+          <div className="dropdown">
+            <label htmlFor="bin-select">Select Bin Type: </label>
+            <select
+              id="bin-select"
+              value={activeBin}
+              onChange={(e) => setActiveBin(e.target.value)}
+              aria-label="Select a bin type"
+            >
+              {binTypes.map(({ id, name }) => (
+                <option key={id} value={id}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-            <section className="info-section" aria-labelledby="bin-info">
-              {activeBinDetails ? (
-                <>
-                  <h2>{activeBinDetails.type}</h2>
-                  <p>{activeBinDetails.description}</p>
+          <section className="info-section" aria-labelledby="bin-info">
+            {activeBinDetails ? (
+              <>
+                {/* Bin Content */}
+                <div className="bin-content">
+                  <h2 className="bin-title">{activeBinDetails.type}</h2>
+                  <p className="bin-description">
+                    {activeBinDetails.description}
+                  </p>
+
+                  {/* Pay Attention */}
                   {activeBinDetails.payAttention && (
                     <>
                       <ul>
@@ -163,6 +178,8 @@ const HomePage = () => {
                       </ul>
                     </>
                   )}
+
+                  {/* Should Go */}
                   <h3>Should Go:</h3>
                   <ul>
                     {activeBinDetails.shouldGo?.map((item, index) => (
@@ -170,20 +187,22 @@ const HomePage = () => {
                     ))}
                   </ul>
 
+                  {/* Shouldn't Go */}
                   <h3>Shouldn't Go:</h3>
                   <ul>
                     {activeBinDetails.shouldNotGo?.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
-                </>
-              ) : (
-                <p>No details available for this bin.</p>
-              )}
-            </section>
-          </>
-        )}
-      </main>
+                </div>
+              </>
+            ) : (
+              <p>No details available for this bin.</p>
+            )}
+          </section>
+        </>
+      )}
+    </main>
   );
 };
 

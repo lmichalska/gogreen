@@ -110,6 +110,9 @@ const Game = () => {
   const [message, setMessage] = useState("");
   const totalItems = items.length;
 
+
+
+
   return (
     <main>
       <h1>Recycling Game</h1>
@@ -121,6 +124,7 @@ const Game = () => {
       ) : (
         <>
         <p>Put trash in the correct trash bins.</p>
+        <div className="game-items">
           <div className="availableItems" aria-labelledby="available-trash-items">
             {items.map((item) => (
               <Trash
@@ -155,7 +159,7 @@ const Game = () => {
               binItems={trashBinItems}
               id="trash-bin"
               setMessage={setMessage}
-            />
+            /></div>
           </div>
 
           <div className="score" aria-live="polite">
