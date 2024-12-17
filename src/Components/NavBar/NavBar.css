@@ -1,6 +1,6 @@
 nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     background: var(--primary-color);
     width: 100%; 
     z-index: 50; 

@@ -1,31 +1,29 @@
 :root {
   /* Dark Mode Colors */
-  --bg-color: #222D2A; /* Dark, muted green background (organic feel) */
-  --card-color: #3E4C44; /* Warm, deep green card background */
-  --light-color: #7A8A73; /* Muted olive for subtle accents */
-  --text-color: #F9F9F9; /* Light text for contrast */
-  --primary-color: #4CAF50; /* Fresh and natural green */
+  --bg-color: #222D2A;
+  --card-color: #3E4C44;
+  --light-color: #7A8A73;
+  --text-color: #F9F9F9;
+  --primary-color: #4CAF50;
   --secondary-color: #2E7D32;
-  --accents: #FF6F61; /* Soft coral for accents (energy and warmth) */
+  --accents: #FF6F61;
   --nav-color: #F9F9F9;
 }
 
 [data-theme="light"] {
-  /* Light Mode Colors */
-  --bg-color: #E8F5E9; /* Soft, light green background for a fresh feel */
-  --card-color: #FFFFFF; /* Clean white for card backgrounds */
-  --light-color: #A1B79F; /* Muted sage green for subtle accents */
-  --text-color: #333333; /* Dark gray text for readability */
-  --primary-color: #388E3C; /* Strong green for primary elements */
-  --secondary-color: #0288D1; /* Blue for secondary elements (trust, water) */
-  --accents: #FF7043; /* Warm coral for action buttons */
+  --bg-color: #E8F5E9;
+  --card-color: #FFFFFF;
+  --light-color: #A1B79F;
+  --text-color: #333333;
+  --primary-color: #388E3C;
+  --secondary-color: #0288D1;
   --nav-color: #F9F9F9;
 }
 
 main {
   padding: 20px;
-  margin-top: 3vh;
-  width: 100vw;
+  margin-top: 5vh;
+  width: 92vw;
 }
 html {
   background-color: var(--bg-color);
@@ -188,6 +186,7 @@ button {
 .trash-text {
   color: #8b4513;
 }
+
 ul li, .info-section h2, label {
   color: var(--text-color);
 }
@@ -218,6 +217,9 @@ ul li, .info-section h2, label {
 
 .dropdown {
   margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
 }
 
 select {
@@ -235,6 +237,7 @@ select {
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 8px;
+  width: 90%;
 }
 
 .article-item h2 {
@@ -243,7 +246,7 @@ select {
 }
 
 .article-item p {
-  color: #555;
+  color: var(--text-color);
 }
 
 .article {
@@ -281,15 +284,12 @@ select {
   border: 2px solid var(--light-color);
   border-radius: 5px;
   outline: none;
+  width: 70%;
   transition: border-color 0.3s;
 }
 
 .search-bar input:focus {
   border-color: var(--primary-color);
-}
-
-.search-bar button {
-  font-size: 1rem;
 }
 
 /* Dropdown */

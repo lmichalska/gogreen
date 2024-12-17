@@ -83,7 +83,7 @@ const HomePage = () => {
   const activeBinDetails = binDetails[activeBin];
 
   return (
-    <div className="home-page">
+    <main>
       <header className="header">
         <h1>Recycling Guide</h1>
         <div className="search-bar">
@@ -105,8 +105,6 @@ const HomePage = () => {
           </button>
         </div>
       </header>
-
-      <main>
         {loading ? (
           <p role="status" aria-live="polite">
             Loading...
@@ -186,7 +184,6 @@ const HomePage = () => {
           </>
         )}
       </main>
-    </div>
   );
 };
 

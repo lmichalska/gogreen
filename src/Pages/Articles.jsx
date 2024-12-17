@@ -49,7 +49,8 @@ const ArticlesPage = () => {
   };
 
   return (
-    <div>
+    <main>
+      <h1>Articles on Recycling</h1>
       <div className="search-bar">
         <input
           type="text"
@@ -65,9 +66,6 @@ const ArticlesPage = () => {
           {searchPerformed ? "Clear" : "Search"}
         </button>
       </div>
-
-      <h1>Articles on Recycling</h1>
-
       {loading && (
         <p role="status" aria-live="polite">
           Loading articles...
@@ -92,7 +90,7 @@ const ArticlesPage = () => {
           <p>No articles found</p>
         )}
       </div>
-    </div>
+      </main>
   );
 };
 

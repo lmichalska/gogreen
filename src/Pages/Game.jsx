@@ -111,7 +111,7 @@ const Game = () => {
   const totalItems = items.length;
 
   return (
-    <main className="info-section">
+    <main>
       <h1>Recycling Game</h1>
       {score === totalItems ? (
         <div className="congratulations" role="alert" aria-live="assertive">
