@@ -6,27 +6,16 @@ const Trash = ({ id, name, type }) => {
 
       element.dataset.startX = touch.clientX;
       element.dataset.startY = touch.clientY;
-      element.dataset.originalPosition = JSON.stringify({
-        left: element.offsetLeft,
-        top: element.offsetTop,
-      });
 
       element.classList.add("dragging");
 
       const moveElement = (event) => {
         const touchMove = event.touches[0];
-        const offsetX = touchMove.clientX - touch.clientX;
-        const offsetY = touchMove.clientY - touch.clientY;
-
         element.style.position = "absolute";
         element.style.zIndex = "1000";
-        element.style.pointerEvents = "none"; // Prevent interference with drop detection
-        element.style.left = `${element.offsetLeft + offsetX}px`;
-        element.style.top = `${element.offsetTop + offsetY}px`;
-
-        // Save new positions for next frame
-        element.dataset.startX = touchMove.clientX;
-        element.dataset.startY = touchMove.clientY;
+        element.style.pointerEvents = "none"; // Prevent interference
+        element.style.left = `${touchMove.clientX - 50}px`;
+        element.style.top = `${touchMove.clientY - 50}px`;
       };
 
       document.addEventListener("touchmove", moveElement);
@@ -57,16 +46,21 @@ const Trash = ({ id, name, type }) => {
       // Detect drop target
       const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
       if (dropTarget && dropTarget.classList.contains("dropBins")) {
+        // Programmatically create a "drop" event with the necessary data
         const event = new Event("drop", { bubbles: true });
         event.dataTransfer = {
           getData: (key) => (key === "itemId" ? id : type),
         };
         dropTarget.dispatchEvent(event);
+
+        // Update the DOM to reflect that the item is "in the bin"
+        dropTarget.querySelector("ul").appendChild(element);
+        element.style.pointerEvents = ""; // Restore interactivity
+        element.draggable = false; // Prevent further dragging
       } else {
         // Reset position if no valid drop
-        const originalPosition = JSON.parse(element.dataset.originalPosition || "{}");
-        element.style.left = `${originalPosition.left}px`;
-        element.style.top = `${originalPosition.top}px`;
+        element.style.position = "relative";
+        element.style.pointerEvents = ""; // Restore interactivity
       }
     }
   };
@@ -88,22 +82,23 @@ const Trash = ({ id, name, type }) => {
     </div>
   );
 };
-
 const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => {
   const drop = (e) => {
     e.preventDefault();
 
-    const itemId = e.dataTransfer?.getData("itemId") || e.target.dataset.itemId;
-    const itemType = e.dataTransfer?.getData("itemType") || e.target.dataset.itemType;
+    const itemId = e.dataTransfer?.getData("itemId");
+    const itemType = e.dataTransfer?.getData("itemType");
 
     if (itemType === type) {
-      setScore((prevScore) => prevScore + 1);
-      setBinItems((prevItems) => [...prevItems, itemId]);
+      setScore((prevScore) => prevScore + 1); // Update the score
+      setBinItems((prevItems) => [...prevItems, itemId]); // Update the bin's item list
+      setMessage("Correct!"); // Provide feedback
 
+      // Hide the dragged element
       const draggedElement = document.getElementById(itemId);
-      if (draggedElement) draggedElement.style.display = "none";
-
-      setMessage("Correct!");
+      if (draggedElement) {
+        draggedElement.style.display = "none";
+      }
     } else {
       setMessage("Oops! Wrong bin. Try again.");
     }
