@@ -24,6 +24,7 @@ main {
   padding: 20px;
   margin-top: 5vh;
   width: 92vw;
+  margin-bottom: 40px;
 }
 html {
   background-color: var(--bg-color);
@@ -338,8 +339,7 @@ dropdown select {
 }
 
 /* Content */
-.bin-content h2, h3 {
-  margin-bottom: 8px;
+.bin-content h3 {
   color: var(--primary-color);
 }
 
@@ -356,4 +356,9 @@ dropdown select {
 .bin-content li {
   margin-bottom: 5px;
   color: var(--text-color);
+}
+
+.bin-color-info {
+  display: flex;
+  flex-direction: row;
 }

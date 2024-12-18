@@ -44,7 +44,7 @@ const HomePage = () => {
             console.warn(
               "Default bin 'residual_waste' not found. Defaulting to the first available bin."
             );
-            setActiveBin(Object.keys(bins)[0]);
+            setActiveBin(Object.keys(bins)[8]);
           }
         } else {
           console.warn("No trash bin details found");
@@ -164,9 +164,6 @@ const HomePage = () => {
       {/* Bin Content */}
       <div className="bin-content">
         <h2 className="bin-title">{activeBinDetails.type}</h2>
-        <p className="bin-description">{activeBinDetails.description}</p>
-
-        {/* Bin Color */}
         {activeBinDetails.color && (
           <div className="bin-color-info">
             <p>
@@ -176,10 +173,9 @@ const HomePage = () => {
               className="color-example"
               style={{
                 backgroundColor: activeBinDetails.color.hex,
-                width: "50px",
-                height: "50px",
-                border: "1px solid #000",
-                display: "inline-block",
+                width: "20px",
+                height: "20px",
+                borderRadius: "10px",
               }}
               aria-label={`Color example: ${activeBinDetails.color.name}`}
             ></div>
@@ -189,6 +185,7 @@ const HomePage = () => {
         {/* Pay Attention */}
         {activeBinDetails.payAttention && (
           <>
+          <p className="bin-description">{activeBinDetails.description}</p>
             <ul>
               {activeBinDetails.payAttention.map((item, index) => (
                 <li key={index}>{item}</li>
