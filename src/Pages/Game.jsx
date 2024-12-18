@@ -4,6 +4,8 @@ const Trash = ({ id, name, type }) => {
       const touch = e.touches[0];
       const element = e.target;
 
+      console.log("Touch start at:", touch.clientX, touch.clientY); // Debugging
+
       element.dataset.startX = touch.clientX;
       element.dataset.startY = touch.clientY;
 
@@ -19,7 +21,7 @@ const Trash = ({ id, name, type }) => {
       };
 
       document.addEventListener("touchmove", moveElement);
-      element.dataset.touchMoveListener = moveElement;
+      element.touchMoveListener = moveElement; // Store the reference as a property
     } else {
       e.dataTransfer.setData("itemId", id);
       e.dataTransfer.setData("itemType", type);
@@ -29,6 +31,8 @@ const Trash = ({ id, name, type }) => {
   const dragEnd = (e) => {
     if (e.type === "touchend") {
       const touch = e.changedTouches[0];
+      console.log("Touch end at:", touch.clientX, touch.clientY); // Debugging
+
       const element = e.target;
 
       element.style.position = "";
@@ -37,22 +41,25 @@ const Trash = ({ id, name, type }) => {
       element.style.top = "";
       element.classList.remove("dragging");
 
-      const moveListener = element.dataset.touchMoveListener;
+      const moveListener = element.touchMoveListener;
       if (moveListener) {
         document.removeEventListener("touchmove", moveListener);
-        delete element.dataset.touchMoveListener;
+        delete element.touchMoveListener;
       }
 
       // Detect drop target
       const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+      console.log("Drop target:", dropTarget); // Debugging
       if (dropTarget && dropTarget.classList.contains("dropBins")) {
-        // Add the item directly to the state through a custom event
+        console.log("Custom drop dispatched to:", dropTarget); // Debugging
         dropTarget.dispatchEvent(
           new CustomEvent("customDrop", {
             detail: { itemId: id, itemType: type },
             bubbles: true,
           })
         );
+      } else {
+        console.log("No valid drop target."); // Debugging
       }
     }
   };
@@ -74,11 +81,20 @@ const Trash = ({ id, name, type }) => {
     </div>
   );
 };
-const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => {
+
+const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage, items }) => {
   const handleDrop = (itemId, itemType) => {
+    console.log("Handling drop:", { itemId, itemType }); // Debugging
+
     if (itemType === type) {
-      setScore((prevScore) => prevScore + 1); // Update the score
-      setBinItems((prevItems) => [...prevItems, itemId]); // Update the bin's item list
+      setScore((prevScore) => {
+        console.log("Updated score:", prevScore + 1); // Debugging
+        return prevScore + 1;
+      });
+      setBinItems((prevItems) => {
+        console.log("Updated bin items:", [...prevItems, itemId]); // Debugging
+        return [...prevItems, itemId];
+      });
       setMessage("Correct!"); // Provide feedback
 
       // Hide the dragged element
@@ -99,6 +115,7 @@ const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => 
   };
 
   const customDrop = (e) => {
+    console.log("Custom drop triggered", e.detail); // Debugging
     const { itemId, itemType } = e.detail;
     handleDrop(itemId, itemType);
   };
@@ -109,9 +126,16 @@ const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => 
 
   React.useEffect(() => {
     const binElement = document.getElementById(id);
+    if (!binElement) {
+      console.error(`Bin element with id "${id}" not found`); // Debugging
+      return;
+    }
+
     binElement.addEventListener("customDrop", customDrop);
+    console.log(`Custom drop listener added to bin "${id}"`); // Debugging
 
     return () => {
+      console.log(`Custom drop listener removed from bin "${id}"`); // Debugging
       binElement.removeEventListener("customDrop", customDrop);
     };
   }, [id]);
@@ -133,6 +157,7 @@ const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => 
       <ul aria-live="polite" className="dropped-items">
         {binItems.map((itemId) => {
           const item = items.find((item) => item.id === itemId);
+          if (!item) return null; // Handle case where item is not found
           return (
             <li key={item.id} className="dropped-item">
               {item.name}
