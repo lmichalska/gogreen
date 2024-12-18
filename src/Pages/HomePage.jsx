@@ -9,20 +9,21 @@ const HomePage = () => {
   const [trashItems, setTrashItems] = useState([]);
   const [binDetails, setBinDetails] = useState({});
   const [loading, setLoading] = useState(true);
-  const [searchPerformed, setSearchPerformed] = useState(false); // Track if search was performed
+  const [searchPerformed, setSearchPerformed] = useState(false);
 
+  // Fetch data from Firebase
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const itemsRef = ref(database, "trash_items");
         const binsRef = ref(database, "trash_cans");
-
         const [itemsSnapshot, binsSnapshot] = await Promise.all([
           get(itemsRef),
           get(binsRef),
         ]);
 
+        // Check if trash items exist
         if (itemsSnapshot.exists()) {
           const items = itemsSnapshot.val();
           setTrashItems(
@@ -36,10 +37,10 @@ const HomePage = () => {
           setTrashItems([]);
         }
 
+        // Check if bins exist
         if (binsSnapshot.exists()) {
           const bins = binsSnapshot.val();
           setBinDetails(bins);
-
           if (!bins["residual_waste"]) {
             console.warn(
               "Default bin 'residual_waste' not found. Defaulting to the first available bin."
@@ -60,26 +61,27 @@ const HomePage = () => {
     fetchData();
   }, []);
 
-  // Handle search button behavior
+
   const handleSearch = () => {
-    setSearchPerformed(true); // Mark that a search has been performed
+    setSearchPerformed(true); // Mark search as performed
   };
 
-  // Reset search state if query is modified
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setSearchPerformed(false); // Reset "Clear" button when the search is modified
+    setSearchPerformed(false); // Reset the search button
   };
 
   const filteredItems = trashItems.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Bin types for the dropdown
   const binTypes = Object.entries(binDetails).map(([id, details]) => ({
     id,
     name: details.type,
   }));
 
+  // Get details for the active bin
   const activeBinDetails = binDetails[activeBin];
 
   return (
@@ -87,31 +89,29 @@ const HomePage = () => {
       <header className="header">
         <h1>Recycling Guide</h1>
         <div className="search-bar">
-          <div className="search-bar">
-            <input
-              id="search-input"
-              type="text"
-              placeholder="Search for items..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSearch(); // Trigger search on Enter
-                }
-              }}
-              aria-label="Search for recycling items"
-            />
-            <button
-              onClick={
-                searchPerformed ? () => setSearchQuery("") : handleSearch
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Search for items..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch(); // Search on Enter
               }
-              aria-label={
-                searchPerformed ? "Clear search input" : "Perform search"
-              }
-            >
-              {searchPerformed ? "Clear" : "Search"}
-            </button>
-          </div>
+            }}
+            aria-label="Search for recycling items"
+          />
+          <button
+            onClick={
+              searchPerformed ? () => setSearchQuery("") : handleSearch
+            }
+            aria-label={
+              searchPerformed ? "Clear search input" : "Perform search"
+            }
+          >
+            {searchPerformed ? "Clear" : "Search"}
+          </button>
         </div>
       </header>
       {loading ? (
@@ -159,63 +159,56 @@ const HomePage = () => {
           </div>
 
           <section className="info-section" aria-labelledby="bin-info">
-  {activeBinDetails ? (
-    <>
-      {/* Bin Content */}
-      <div className="bin-content">
-        <h2 className="bin-title">{activeBinDetails.type}</h2>
-        {activeBinDetails.color && (
-          <div className="bin-color-info">
-            <p>
-              <strong>Color:</strong> {activeBinDetails.color.name}
-            </p>
-            <div
-              className="color-example"
-              style={{
-                backgroundColor: activeBinDetails.color.hex,
-                width: "20px",
-                height: "20px",
-                borderRadius: "10px",
-              }}
-              aria-label={`Color example: ${activeBinDetails.color.name}`}
-            ></div>
-          </div>
-        )}
+            {activeBinDetails ? (
+              <div className="bin-content">
+                <h2 className="bin-title">{activeBinDetails.type}</h2>
+                {activeBinDetails.color && (
+                  <div className="bin-color-info">
+                    <p>
+                      <strong>Color:</strong> {activeBinDetails.color.name}
+                    </p>
+                    <div
+                      className="color-example"
+                      style={{
+                        backgroundColor: activeBinDetails.color.hex,
+                        width: "20px",
+                        height: "20px",
+                        borderRadius: "10px",
+                      }}
+                      aria-label={`Color example: ${activeBinDetails.color.name}`}
+                    ></div>
+                  </div>
+                )}
+                {activeBinDetails.payAttention && (
+                  <>
+                    <p className="bin-description">
+                      {activeBinDetails.description}
+                    </p>
+                    <ul>
+                      {activeBinDetails.payAttention.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+                <h3>Should Go:</h3>
+                <ul>
+                  {activeBinDetails.shouldGo?.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
 
-        {/* Pay Attention */}
-        {activeBinDetails.payAttention && (
-          <>
-          <p className="bin-description">{activeBinDetails.description}</p>
-            <ul>
-              {activeBinDetails.payAttention.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </>
-        )}
-
-        {/* Should Go */}
-        <h3>Should Go:</h3>
-        <ul>
-          {activeBinDetails.shouldGo?.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-
-        {/* Shouldn't Go */}
-        <h3>Shouldn't Go:</h3>
-        <ul>
-          {activeBinDetails.shouldNotGo?.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </div>
-    </>
-  ) : (
-    <p>No details available for this bin.</p>
-  )}
-</section>
-
+                <h3>Shouldn't Go:</h3>
+                <ul>
+                  {activeBinDetails.shouldNotGo?.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <p>No details available for this bin.</p>
+            )}
+          </section>
         </>
       )}
     </main>

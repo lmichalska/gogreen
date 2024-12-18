@@ -7,16 +7,18 @@ const ArticlesPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchPerformed, setSearchPerformed] = useState(false);
+
   const endpoint =
     "https://gogreen-69200-default-rtdb.europe-west1.firebasedatabase.app/articles.json";
 
-  // Fetch articles
   useEffect(() => {
     const fetchArticles = async () => {
       try {
+        // Fetch data
         const response = await fetch(endpoint);
         const data = await response.json();
 
+        // Create an array of articles
         const articleArray = Object.keys(data).map((key) => ({
           id: key,
           ...data[key],
@@ -33,26 +35,26 @@ const ArticlesPage = () => {
     fetchArticles();
   }, []);
 
-  // Filter articles (search)
+  // Filter articles
   const filteredArticles = articles.filter((article) =>
     article["main-title"].toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Handle search
   const handleSearch = () => {
     setSearchPerformed(true);
   };
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setSearchPerformed(false);
+    setSearchPerformed(false); // Reset search
   };
 
-
-
-  
   return (
     <main>
       <h1>Articles on Recycling</h1>
+
+      {/* Search Bar */}
       <div className="search-bar">
         <input
           type="text"
@@ -68,6 +70,8 @@ const ArticlesPage = () => {
           {searchPerformed ? "Clear" : "Search"}
         </button>
       </div>
+
+      {/* Loading */}
       {loading && (
         <p role="status" aria-live="polite">
           Loading articles...
@@ -92,7 +96,7 @@ const ArticlesPage = () => {
           <p>No articles found</p>
         )}
       </div>
-      </main>
+    </main>
   );
 };
 

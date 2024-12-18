@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome, FaBookOpen, FaGamepad, FaSearch} from 'react-icons/fa'; // You can use icons from react-icons
+import { FaHome, FaBookOpen, FaGamepad, FaSearch} from 'react-icons/fa';
 import './NavBar.css';
 
 const BottomNav = () => {

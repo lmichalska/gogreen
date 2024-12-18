@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Pages.css";
 
+// Array of trash
 const items = [
   { name: "🗞️ Paper", type: "paper", id: "paper-1" },
   { name: "🍼 Plastic Bottle", type: "plastic", id: "plastic-1" },
@@ -11,30 +12,33 @@ const items = [
 ];
 
 const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => {
+  // Handles when an item is dropped onto the bin
   const drop = (e) => {
     e.preventDefault();
+
     const itemId = e.dataTransfer.getData("itemId");
     const itemType = e.dataTransfer.getData("itemType");
 
+    // Check if the item matches the bin type
     if (itemType === type) {
-      setScore((prevScore) => prevScore + 1);
-      setBinItems((prevItems) => [...prevItems, itemId]);
+      setScore((prevScore) => prevScore + 1); // Change the score
+      setBinItems((prevItems) => [...prevItems, itemId]); // Add item to the bin
+
+      // Hide the dragged element
       const draggedElement = document.getElementById(itemId);
       draggedElement.style.display = "none";
+
       setMessage("Correct!");
     } else {
-      setMessage("Oops! Wrong bin. Try again.");
+      setMessage("Oops! Wrong bin. Try again."); // Feedback for incorrect sorting
     }
 
     e.target.classList.remove("activeDropArea");
   };
 
   const allowDrop = (e) => e.preventDefault();
-
   const dragEnter = (e) => e.target.classList.add("activeDropArea");
-
   const dragLeave = (e) => e.target.classList.remove("activeDropArea");
-
   const binName = type === "trash" ? "Mixed Trash" : type.charAt(0).toUpperCase() + type.slice(1);
 
   return (
@@ -62,13 +66,12 @@ const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => 
     </div>
   );
 };
-
 const Trash = ({ id, name, type }) => {
+  // Handle drag
   const dragStart = (e) => {
     e.dataTransfer.setData("itemId", id);
     e.dataTransfer.setData("itemType", type);
 
-    // Create and set custom drag image
     const dragImage = document.createElement("div");
     dragImage.className = "drag-image";
     dragImage.textContent = name;
@@ -78,6 +81,7 @@ const Trash = ({ id, name, type }) => {
     e.target.classList.add("dragging");
   };
 
+  // End of the drag 
   const dragEnd = (e) => {
     e.target.classList.remove("dragging");
     const customDragImage = document.querySelector(".drag-image");
@@ -102,6 +106,7 @@ const Trash = ({ id, name, type }) => {
   );
 };
 
+
 const Game = () => {
   const [score, setScore] = useState(0);
   const [paperBinItems, setPaperBinItems] = useState([]);
@@ -109,9 +114,6 @@ const Game = () => {
   const [trashBinItems, setTrashBinItems] = useState([]);
   const [message, setMessage] = useState("");
   const totalItems = items.length;
-
-
-
 
   return (
     <main>
@@ -123,45 +125,46 @@ const Game = () => {
         </div>
       ) : (
         <>
-        <p>Put trash in the correct trash bins.</p>
-        <div className="game-items">
-          <div className="availableItems" aria-labelledby="available-trash-items">
-            {items.map((item) => (
-              <Trash
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                type={item.type}
+          <p>Put trash in the correct trash bins.</p>
+          <div className="game-items">
+            <div className="availableItems" aria-labelledby="available-trash-items">
+              {items.map((item) => (
+                <Trash
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  type={item.type}
+                />
+              ))}
+            </div>
+            <div className="bins" aria-labelledby="trash-bins">
+              <DropBins
+                type="paper"
+                setScore={setScore}
+                setBinItems={setPaperBinItems}
+                binItems={paperBinItems}
+                id="paper-bin"
+                setMessage={setMessage}
               />
-            ))}
+              <DropBins
+                type="plastic"
+                setScore={setScore}
+                setBinItems={setPlasticBinItems}
+                binItems={plasticBinItems}
+                id="plastic-bin"
+                setMessage={setMessage}
+              />
+              <DropBins
+                type="trash"
+                setScore={setScore}
+                setBinItems={setTrashBinItems}
+                binItems={trashBinItems}
+                id="trash-bin"
+                setMessage={setMessage}
+              />
+            </div>
           </div>
-          <div className="bins" aria-labelledby="trash-bins">
-            <DropBins
-              type="paper"
-              setScore={setScore}
-              setBinItems={setPaperBinItems}
-              binItems={paperBinItems}
-              id="paper-bin"
-              setMessage={setMessage}
-            />
-            <DropBins
-              type="plastic"
-              setScore={setScore}
-              setBinItems={setPlasticBinItems}
-              binItems={plasticBinItems}
-              id="plastic-bin"
-              setMessage={setMessage}
-            />
-            <DropBins
-              type="trash"
-              setScore={setScore}
-              setBinItems={setTrashBinItems}
-              binItems={trashBinItems}
-              id="trash-bin"
-              setMessage={setMessage}
-            /></div>
-          </div>
-
+          {/* Feedback message */}
           <div className="score" aria-live="polite">
             <p>Score: {score}</p>
           </div>
