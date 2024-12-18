@@ -159,47 +159,66 @@ const HomePage = () => {
           </div>
 
           <section className="info-section" aria-labelledby="bin-info">
-            {activeBinDetails ? (
-              <>
-                {/* Bin Content */}
-                <div className="bin-content">
-                  <h2 className="bin-title">{activeBinDetails.type}</h2>
-                  <p className="bin-description">
-                    {activeBinDetails.description}
-                  </p>
+  {activeBinDetails ? (
+    <>
+      {/* Bin Content */}
+      <div className="bin-content">
+        <h2 className="bin-title">{activeBinDetails.type}</h2>
+        <p className="bin-description">{activeBinDetails.description}</p>
 
-                  {/* Pay Attention */}
-                  {activeBinDetails.payAttention && (
-                    <>
-                      <ul>
-                        {activeBinDetails.payAttention.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
+        {/* Bin Color */}
+        {activeBinDetails.color && (
+          <div className="bin-color-info">
+            <p>
+              <strong>Color:</strong> {activeBinDetails.color.name}
+            </p>
+            <div
+              className="color-example"
+              style={{
+                backgroundColor: activeBinDetails.color.hex,
+                width: "50px",
+                height: "50px",
+                border: "1px solid #000",
+                display: "inline-block",
+              }}
+              aria-label={`Color example: ${activeBinDetails.color.name}`}
+            ></div>
+          </div>
+        )}
 
-                  {/* Should Go */}
-                  <h3>Should Go:</h3>
-                  <ul>
-                    {activeBinDetails.shouldGo?.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
+        {/* Pay Attention */}
+        {activeBinDetails.payAttention && (
+          <>
+            <ul>
+              {activeBinDetails.payAttention.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </>
+        )}
 
-                  {/* Shouldn't Go */}
-                  <h3>Shouldn't Go:</h3>
-                  <ul>
-                    {activeBinDetails.shouldNotGo?.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </>
-            ) : (
-              <p>No details available for this bin.</p>
-            )}
-          </section>
+        {/* Should Go */}
+        <h3>Should Go:</h3>
+        <ul>
+          {activeBinDetails.shouldGo?.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+
+        {/* Shouldn't Go */}
+        <h3>Shouldn't Go:</h3>
+        <ul>
+          {activeBinDetails.shouldNotGo?.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </>
+  ) : (
+    <p>No details available for this bin.</p>
+  )}
+</section>
+
         </>
       )}
     </main>
