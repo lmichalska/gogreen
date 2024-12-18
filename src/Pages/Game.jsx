@@ -46,21 +46,13 @@ const Trash = ({ id, name, type }) => {
       // Detect drop target
       const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
       if (dropTarget && dropTarget.classList.contains("dropBins")) {
-        // Programmatically create a "drop" event with the necessary data
-        const event = new Event("drop", { bubbles: true });
-        event.dataTransfer = {
-          getData: (key) => (key === "itemId" ? id : type),
-        };
-        dropTarget.dispatchEvent(event);
-
-        // Update the DOM to reflect that the item is "in the bin"
-        dropTarget.querySelector("ul").appendChild(element);
-        element.style.pointerEvents = ""; // Restore interactivity
-        element.draggable = false; // Prevent further dragging
-      } else {
-        // Reset position if no valid drop
-        element.style.position = "relative";
-        element.style.pointerEvents = ""; // Restore interactivity
+        // Add the item directly to the state through a custom event
+        dropTarget.dispatchEvent(
+          new CustomEvent("customDrop", {
+            detail: { itemId: id, itemType: type },
+            bubbles: true,
+          })
+        );
       }
     }
   };
@@ -83,12 +75,7 @@ const Trash = ({ id, name, type }) => {
   );
 };
 const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => {
-  const drop = (e) => {
-    e.preventDefault();
-
-    const itemId = e.dataTransfer?.getData("itemId");
-    const itemType = e.dataTransfer?.getData("itemType");
-
+  const handleDrop = (itemId, itemType) => {
     if (itemType === type) {
       setScore((prevScore) => prevScore + 1); // Update the score
       setBinItems((prevItems) => [...prevItems, itemId]); // Update the bin's item list
@@ -102,13 +89,32 @@ const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => 
     } else {
       setMessage("Oops! Wrong bin. Try again.");
     }
+  };
 
-    e.target.classList.remove("activeDropArea");
+  const drop = (e) => {
+    e.preventDefault();
+    const itemId = e.dataTransfer?.getData("itemId");
+    const itemType = e.dataTransfer?.getData("itemType");
+    handleDrop(itemId, itemType);
+  };
+
+  const customDrop = (e) => {
+    const { itemId, itemType } = e.detail;
+    handleDrop(itemId, itemType);
   };
 
   const allowDrop = (e) => e.preventDefault();
   const dragEnter = (e) => e.target.classList.add("activeDropArea");
   const dragLeave = (e) => e.target.classList.remove("activeDropArea");
+
+  React.useEffect(() => {
+    const binElement = document.getElementById(id);
+    binElement.addEventListener("customDrop", customDrop);
+
+    return () => {
+      binElement.removeEventListener("customDrop", customDrop);
+    };
+  }, [id]);
 
   const binName = type === "trash" ? "Mixed Trash" : type.charAt(0).toUpperCase() + type.slice(1);
 
