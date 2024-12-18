@@ -16,17 +16,17 @@ const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => 
   const drop = (e) => {
     e.preventDefault();
 
-    const itemId = e.dataTransfer.getData("itemId");
-    const itemType = e.dataTransfer.getData("itemType");
+    const itemId = e.dataTransfer?.getData("itemId") || e.target.dataset.itemId;
+    const itemType = e.dataTransfer?.getData("itemType") || e.target.dataset.itemType;
 
     // Check if the item matches the bin type
     if (itemType === type) {
-      setScore((prevScore) => prevScore + 1); // Change the score
+      setScore((prevScore) => prevScore + 1); // Increase the score
       setBinItems((prevItems) => [...prevItems, itemId]); // Add item to the bin
 
       // Hide the dragged element
       const draggedElement = document.getElementById(itemId);
-      draggedElement.style.display = "none";
+      if (draggedElement) draggedElement.style.display = "none";
 
       setMessage("Correct!");
     } else {
@@ -39,6 +39,7 @@ const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => 
   const allowDrop = (e) => e.preventDefault();
   const dragEnter = (e) => e.target.classList.add("activeDropArea");
   const dragLeave = (e) => e.target.classList.remove("activeDropArea");
+
   const binName = type === "trash" ? "Mixed Trash" : type.charAt(0).toUpperCase() + type.slice(1);
 
   return (
@@ -66,27 +67,61 @@ const DropBins = ({ type, setScore, setBinItems, binItems, id, setMessage }) => 
     </div>
   );
 };
+
 const Trash = ({ id, name, type }) => {
   // Handle drag
   const dragStart = (e) => {
-    e.dataTransfer.setData("itemId", id);
-    e.dataTransfer.setData("itemType", type);
+    if (e.type === "touchstart") {
+      const touch = e.touches[0];
+      const element = e.target;
 
-    const dragImage = document.createElement("div");
-    dragImage.className = "drag-image";
-    dragImage.textContent = name;
-    document.body.appendChild(dragImage);
-    e.dataTransfer.setDragImage(dragImage, 0, 0);
+      element.dataset.startX = touch.clientX;
+      element.dataset.startY = touch.clientY;
+      element.classList.add("dragging");
 
-    e.target.classList.add("dragging");
+      const moveElement = (event) => {
+        const touchMove = event.touches[0];
+        element.style.position = "absolute";
+        element.style.zIndex = "1000";
+        element.style.left = `${touchMove.clientX - 50}px`;
+        element.style.top = `${touchMove.clientY - 50}px`;
+      };
+
+      document.addEventListener("touchmove", moveElement);
+      element.dataset.touchMoveListener = moveElement;
+    } else {
+      e.dataTransfer.setData("itemId", id);
+      e.dataTransfer.setData("itemType", type);
+    }
   };
 
-  // End of the drag 
+  // Handle drag end
   const dragEnd = (e) => {
-    e.target.classList.remove("dragging");
-    const customDragImage = document.querySelector(".drag-image");
-    if (customDragImage) {
-      customDragImage.remove();
+    if (e.type === "touchend") {
+      const touch = e.changedTouches[0];
+      const element = e.target;
+
+      element.style.position = "";
+      element.style.zIndex = "";
+      element.style.left = "";
+      element.style.top = "";
+      element.classList.remove("dragging");
+
+      const moveListener = element.dataset.touchMoveListener;
+      if (moveListener) {
+        document.removeEventListener("touchmove", moveListener);
+        delete element.dataset.touchMoveListener;
+      }
+
+      // Check drop target
+      const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+      if (dropTarget && dropTarget.classList.contains("dropBins")) {
+        const event = new Event("drop");
+        event.dataTransfer = {
+          getData: (key) => (key === "itemId" ? id : type),
+        };
+        dropTarget.dispatchEvent(event);
+      }
     }
   };
 
@@ -97,6 +132,8 @@ const Trash = ({ id, name, type }) => {
       draggable="true"
       onDragStart={dragStart}
       onDragEnd={dragEnd}
+      onTouchStart={dragStart}
+      onTouchEnd={dragEnd}
       role="button"
       aria-grabbed="false"
       aria-label={`Draggable item: ${name}`}
@@ -105,7 +142,6 @@ const Trash = ({ id, name, type }) => {
     </div>
   );
 };
-
 
 const Game = () => {
   const [score, setScore] = useState(0);
