@@ -48,10 +48,11 @@ const ArticlePage = () => {
   
   return (
     <main aria-labelledby="article-title">
+      <div className="info-section">
       <header>
         <h1 id="article-title">{article["main-title"]}</h1>
       </header>
-      <section className="info-section" aria-labelledby="introduction-heading">
+      <section aria-labelledby="introduction-heading">
         <h2 id="introduction-heading">Introduction</h2>
         <p>{article.introduction}</p>
       </section>
@@ -99,6 +100,7 @@ const ArticlePage = () => {
         <h2 id="conclusion-heading">Conclusion</h2>
         <p>{article.conclusion}</p>
       </section>
+      </div>
     </main>
   );
 };
